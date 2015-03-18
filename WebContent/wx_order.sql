@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.2.6
 -- http://www.phpmyadmin.net
 --
@@ -8,13 +8,19 @@
 -- PHP Version: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
 SET time_zone = "+00:00";
 
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+
 /*!40101 SET NAMES utf8 */;
+
 
 --
 -- Database: `wx_order`
@@ -39,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `advances` (
   `location` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `advances` (
 CREATE TABLE IF NOT EXISTS `config` (
 `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 -- --------------------------------------------------------
 
@@ -65,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `dishes` (
   `sellcount` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `orderinfo` (
   `did` int(11) NOT NULL,
   `num` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -98,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `remark` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
 -- --------------------------------------------------------
 
 --
@@ -112,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `shops` (
   `remark` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
 -- --------------------------------------------------------
 
 --
@@ -123,6 +135,7 @@ CREATE TABLE IF NOT EXISTS `types` (
   `sid` int(8) NOT NULL,
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 -- --------------------------------------------------------
 
@@ -144,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `token` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
 --
 -- Indexes for dumped tables
 --
@@ -160,11 +174,13 @@ ALTER TABLE `advances`
 ALTER TABLE `config`
  ADD PRIMARY KEY (`id`);
 
+
 --
 -- Indexes for table `dishes`
 --
 ALTER TABLE `dishes`
  ADD PRIMARY KEY (`did`), ADD KEY `sid` (`sid`);
+
 
 --
 -- Indexes for table `orderinfo`
@@ -172,11 +188,13 @@ ALTER TABLE `dishes`
 ALTER TABLE `orderinfo`
  ADD PRIMARY KEY (`oid`), ADD KEY `sid` (`sid`,`did`), ADD KEY `did` (`did`);
 
+
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
  ADD PRIMARY KEY (`oid`), ADD KEY `sid` (`sid`,`uid`), ADD KEY `uid` (`uid`);
+
 
 --
 -- Indexes for table `shops`
@@ -184,17 +202,20 @@ ALTER TABLE `orders`
 ALTER TABLE `shops`
  ADD PRIMARY KEY (`sid`);
 
+
 --
 -- Indexes for table `types`
 --
 ALTER TABLE `types`
  ADD PRIMARY KEY (`tid`), ADD KEY `sid` (`sid`);
 
+
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
  ADD PRIMARY KEY (`uid`);
+
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -205,36 +226,43 @@ ALTER TABLE `users`
 --
 ALTER TABLE `advances`
 MODIFY `aid` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `config`
 --
 ALTER TABLE `config`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `dishes`
 --
 ALTER TABLE `dishes`
 MODIFY `did` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
 MODIFY `oid` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
 MODIFY `sid` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `types`
 --
 ALTER TABLE `types`
 MODIFY `tid` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
 MODIFY `uid` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- 限制导出的表
 --
@@ -246,11 +274,13 @@ ALTER TABLE `advances`
 ADD CONSTRAINT `advances_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
 ADD CONSTRAINT `advances_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `shops` (`sid`);
 
+
 --
 -- 限制表 `dishes`
 --
 ALTER TABLE `dishes`
 ADD CONSTRAINT `dishes_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `shops` (`sid`);
+
 
 --
 -- 限制表 `orderinfo`
@@ -260,6 +290,7 @@ ADD CONSTRAINT `orderinfo_ibfk_3` FOREIGN KEY (`did`) REFERENCES `dishes` (`did`
 ADD CONSTRAINT `orderinfo_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `shops` (`sid`),
 ADD CONSTRAINT `orderinfo_ibfk_2` FOREIGN KEY (`oid`) REFERENCES `orders` (`oid`);
 
+
 --
 -- 限制表 `orders`
 --
@@ -267,12 +298,16 @@ ALTER TABLE `orders`
 ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
 ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `shops` (`sid`);
 
+
 --
 -- 限制表 `types`
 --
 ALTER TABLE `types`
 ADD CONSTRAINT `types_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `shops` (`sid`);
 
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
