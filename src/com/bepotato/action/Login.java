@@ -1,4 +1,4 @@
-package com.bepotato;
+package com.bepotato.action;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -1,6 +1,12 @@
 package com.bepotato.entity;
 
-public class Shop {
+import java.io.Serializable;
+
+public class Shop implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int sid;
 	private String name;
 	private String phone;
