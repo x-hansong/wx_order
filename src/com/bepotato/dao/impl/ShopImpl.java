@@ -32,12 +32,7 @@ public class ShopImpl implements ShopDao{
 			// TODO: handle exception	
 			e.printStackTrace();
 		}finally{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			DBUtil.close(connection);
 		}
 		return shop;
 	}

@@ -33,15 +33,7 @@ public class Shops extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		super.service(request, response);
-		ShopImpl shopImpl = new ShopImpl();
-		Shop shop = shopImpl.getShop(1);
-		String targetURL = "/pages//shop.jsp";
-//		HttpSession session = request.getSession();
-		request.setAttribute("shop", shop);
-		RequestDispatcher rd;
-//		request.setAttribute("message", "hello");
-		rd = getServletContext().getRequestDispatcher(targetURL);
-		rd.forward(request, response);
+
 	}
 
 	/**
@@ -52,7 +44,16 @@ public class Shops extends HttpServlet {
 			HttpServletResponse response) throws ServletException,
 			IOException {
 		// TODO Auto-generated method stub
-		
+		//实例化店铺对象
+		ShopImpl shopImpl = new ShopImpl();
+		Shop shop = shopImpl.getShop(1);
+		String targetURL = "/pages/shop.jsp";
+		//存储数据到request里面
+		request.setAttribute("shop", shop);
+		//转发请求到jsp
+		RequestDispatcher rd;
+		rd = getServletContext().getRequestDispatcher(targetURL);
+		rd.forward(request, response);
 	}
 
 	/**
