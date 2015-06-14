@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="shop" class="com.bepotato.entity.Shop" scope="request" />
+<jsp:useBean id="shop" class="com.bepotato.model.Shop" scope="request" />
 <%
 	String msg = (String) request.getAttribute("message");
 %>

@@ -1,4 +1,4 @@
-package com.bepotato.entity;
+package com.bepotato.model;
 
 import java.io.Serializable;
 

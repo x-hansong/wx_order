@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bepotato.dao.impl.ShopImpl;
-import com.bepotato.entity.Shop;
+import com.bepotato.model.Shop;
+import com.bepotato.model.ShopImpl;
 
 /**
  * Servlet implementation class Shops
@@ -46,7 +46,7 @@ public class Shops extends HttpServlet {
 		// TODO Auto-generated method stub
 		//实例化店铺对象
 		ShopImpl shopImpl = new ShopImpl();
-		Shop shop = shopImpl.getShop(1);
+		Shop shop = shopImpl.findById(1);
 		String targetURL = "/pages/shop.jsp";
 		//存储数据到request里面
 		request.setAttribute("shop", shop);
