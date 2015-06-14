@@ -7,6 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title>开始订餐</title>
+<script language="JavaScript" type="text/javascript">
+function addCookie(name,value){ 
+document.cookie=name+"="+value; 
+alert("成功加入购物车"); 
+} 
+
+
+</script>
 <style>
 #header {
 	line-height: 100px;
@@ -98,11 +106,12 @@ a:active {
 	<div id="header">
 		<ul id="nav1">
 			<li class="navv"><b>BEPOTATO</b></li>
-			<li class="navv"><a href="./booking1.html">主页</a></li>
-			<li class="navv"><a href="./booking1.html">开始订餐</a></li>
-			<li class="navv"><a href="./gwc.html">购物车</a></li>
-			<li class="navv"><a href="#">个人中心</a></li>
-			<li id="dengzhu"><a href="./login.html">登录/注册</a></li>
+				<li class="navv"><a href="#">主页</a></li>
+		<li class="navv"><a href="DishType">开始订餐</a></li>
+		<li class="navv"><a href="Cart">购物车</a></li>
+		<li class="navv"><a href="#">个人中心</a></li>
+			<li id="dengzhu"><c:out value="${user.nickname }"></c:out></li>
+			
 		</ul>
 	</div>
 	<div class="left">
@@ -132,7 +141,7 @@ a:active {
 					<span><c:out value="${dish.price }"></c:out></span>
 				</p>
 				<div align="center">
-					<input id="<c:out value="${dish.did }"/>"  name="buy" value="加入购物车" type="button" />
+					<input  name="buy" value="加入购物车" type="button" onclick="addCookie(<c:out value="${dish.did }"></c:out>,1)" />
 				</div>
 			</div>
 		</c:forEach>

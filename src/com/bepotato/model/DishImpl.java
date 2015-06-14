@@ -64,7 +64,7 @@ public class DishImpl implements DishDao{
 	@Override
 	public List<Dish> findByType(int tid) {
 		// TODO Auto-generated method stub
-		String sql = "select * from Dish where tid = ?";
+		String sql = "select * from dishes where tid = ?";
 		ResultSetHandler<List<Dish>> rSetHandler = new BeanListHandler<Dish>(Dish.class);
 		List<Dish> dishs = null;
 		try {
@@ -74,5 +74,19 @@ public class DishImpl implements DishDao{
 			e.printStackTrace();
 		}
 		return dishs;
+	}
+	@Override
+	public Dish findByName(String name) {
+		// TODO Auto-generated method stub
+		String sql = "select * from dishes where name = ?";
+		ResultSetHandler<Dish> rsHandler = new BeanHandler<Dish>(Dish.class);
+		Dish dish  = null;
+		try {
+			dish = runner.query(connection,sql, rsHandler,name);
+		} catch (Exception e) {
+			// TODO: handle exception	
+			e.printStackTrace();
+		}
+		return dish;
 	}
 }

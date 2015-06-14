@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bepotato.model.User;
 import com.bepotato.model.UserImpl;
+import com.bepotato.util.HttpUtils;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Index
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Index")
+public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Index() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +34,21 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//转发请求到jsp
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/pages/login.jsp");
+		String targetUrl = null;
+		Cookie[] cookies = request.getCookies();
+		String uidString = HttpUtils.getCookieValue(cookies, "uid", "");
+		if (uidString.length() == 0) {
+			targetUrl = "/Login";
+		}else{
+			int uid = Integer.valueOf(uidString);
+			UserImpl userImpl = new UserImpl();
+			User user = userImpl.findById(uid);
+			userImpl.closeConnection();
+			request.setAttribute("user", user);
+			targetUrl = "/DishType";
+		}
+		rd = getServletContext().getRequestDispatcher(targetUrl);
 		rd.forward(request, response);
 	}
 
@@ -44,19 +57,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String name  = request.getParameter("name");
-		String pwd = request.getParameter("pwd");
-		UserImpl userImpl = new UserImpl();
-		User user = userImpl.findByName(name);
-		userImpl.closeConnection();
-		if(user.getToken().equals(pwd)){
-			Cookie uidCookie  = new Cookie("uid", user.getUid()+"");
-			response.addCookie(uidCookie);
-			RequestDispatcher rd;
-			request.setAttribute("user", user);
-			rd = getServletContext().getRequestDispatcher("/DishType");
-			rd.forward(request, response);
-		}
 	}
 
 }

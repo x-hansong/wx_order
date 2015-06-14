@@ -65,26 +65,23 @@ button{$("#btn").css("background-color", "transparent");}
 		<li class="navv"><a href="#">个人中心</a></li>
 	</ul>
 	</div>
-<div id="body1";> 
+<div id="body1";>
 
-<button style="position:absolute;width:10%; height:40px;margin:40px 0px 0px 10%;border:none;background-color:rgba(255,255,255,1.00);">登录</button>
-
-
-
-
-<button style="position:absolute;width:10%; height:40px;margin:40px 0px 0px 20%;background-color:rgba(255,255,255,1.00);"onclick="javascript:window.location.href='./Regist'">注册</button>
+<button style="position:absolute;width:10%; height:40px;margin:40px 0px 0px 10%;background-color:rgba(255,255,255,1.00);"onclick="javascript:window.location.href='./Login'">登录</button>
+<button style="position:absolute;width:10%; height:40px;margin:40px 0px 0px 20%;border:none;background-color:rgba(255,255,255,1.00);">注册</button>
 
 <div id="body2";>
 <div id="body3";>
-<form action="./Login" method="post">
-   用户名：<input type="text" name="name"><br>     
-   &nbsp;密码&nbsp;：<input type="password" name="pwd"><br>  
-   <input type="submit" value="登录"style="position:absolute;width:80px; height:30px;margin:25px 0px 0px 90px;">
-</form>
 
+<form action="./Regist" method="post">
+   用户名：<input type="text" name="rname"><br>     
+   &nbsp;密码&nbsp;：<input type="password" name="pwd"><br>  
+   <input type="submit" value="注册"style="position:absolute;width:80px; height:30px;margin:25px 0px 0px 90px;">
+</form>
 
 </div>
 </div>
 </div>
 </body>
 </html>
+

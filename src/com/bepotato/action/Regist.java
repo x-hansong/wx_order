@@ -14,16 +14,16 @@ import com.bepotato.model.User;
 import com.bepotato.model.UserImpl;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Regist
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Regist")
+public class Regist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Regist() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,10 +33,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//转发请求到jsp
-		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/pages/login.jsp");
-		rd.forward(request, response);
+		doPost(request, response);
 	}
 
 	/**
@@ -44,17 +41,22 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String name  = request.getParameter("name");
+		
+		String name  = request.getParameter("rname");
 		String pwd = request.getParameter("pwd");
-		UserImpl userImpl = new UserImpl();
-		User user = userImpl.findByName(name);
-		userImpl.closeConnection();
-		if(user.getToken().equals(pwd)){
-			Cookie uidCookie  = new Cookie("uid", user.getUid()+"");
-			response.addCookie(uidCookie);
+		if (name != null && pwd != null) {
+			UserImpl userImpl = new UserImpl();
+			User user = new User();
+			user.setNickname(name);
+			user.setToken(pwd);
+			if(userImpl.addUser(user)){
+				response.sendRedirect("Login");
+			}else{
+				response.sendRedirect("Regist");
+			}
+		}else {
 			RequestDispatcher rd;
-			request.setAttribute("user", user);
-			rd = getServletContext().getRequestDispatcher("/DishType");
+			rd = getServletContext().getRequestDispatcher("/pages/regist.jsp");
 			rd.forward(request, response);
 		}
 	}
