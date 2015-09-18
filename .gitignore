@@ -1,1 +1,3 @@
-/build/
+server4customer/build/
+*.class
+
