@@ -1,0 +1,73 @@
+.navPoint {
+	CURSOR: hand
+}
+BODY {
+	OVERFLOW-X: hidden;
+	OVERFLOW: hidden;
+}
+TD {
+	FONT-SIZE: 12px
+}
+A {
+	COLOR: #135294; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff6600; TEXT-DECORATION: underline
+}
+BODY {
+	FONT-SIZE: 12px;
+	MARGIN: 0px;
+	COLOR: #000;
+	FONT-FAMILY: tahoma, 宋体, fantasy;
+	TEXT-ALIGN: center;
+	background-color: #DDD;
+}
+.top_table {
+	BACKGROUND: #FFF;
+	WIDTH: 100%;
+	HEIGHT: 41px
+}
+.top_table_leftbg {
+	WIDTH: auto;
+	BACKGROUND-REPEAT: repeat-y;
+	HEIGHT: 41px
+}
+.system_logo {
+	FLOAT: left; WIDTH: 180px; TEXT-ALIGN: left
+}
+DIV.menu {
+	MARGIN: 0px auto; PADDING-TOP: 18px; HEIGHT: 22px; TEXT-ALIGN: left
+}
+DIV.menu UL {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+DIV.menu UL LI .menu_div {
+	DISPLAY: inline; FONT-SIZE: 10px; BACKGROUND: url(../images/menu01_right.gif); WIDTH: 3px; HEIGHT: 23px
+}
+DIV.menu UL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 10px; FONT-SIZE: 12px; BACKGROUND: url(../images/menu01.gif); FLOAT: left; PADDING-BOTTOM: 0px; MARGIN-LEFT: 1px; WIDTH: auto; LINE-HEIGHT: 20px; PADDING-TOP: 0px; FONT-FAMILY: 宋体,; POSITION: relative; HEIGHT: 23px
+}
+DIV.menu_childs UL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; FLOAT: left; PADDING-BOTTOM: 0px; WIDTH: 150px; LINE-HEIGHT: 15px; PADDING-TOP: 0px
+}
+DIV.menu_childs {
+	BORDER-RIGHT: #185790 1px solid; BORDER-TOP: #185790 1px solid; DISPLAY: none; Z-INDEX: 100; BACKGROUND: #f5fdff; LEFT: 0px; BORDER-LEFT: #185790 1px solid; WIDTH: 150px; BORDER-BOTTOM: #185790 1px solid; WHITE-SPACE: nowrap; POSITION: absolute; TOP: 22px
+}
+DIV.menu UL LI A:hover {
+	COLOR: #ff7; TEXT-DECORATION: none
+}
+DIV.menu UL LI A {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+DIV.menu_childs UL LI A:hover {
+	DISPLAY: block; BACKGROUND: #337abb; WIDTH: 148px; COLOR: #fff; TEXT-DECORATION: none
+}
+DIV.menu_childs UL LI A {
+	PADDING-LEFT: 15px; WIDTH: 148px; COLOR: #135294; LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-DECORATION: none
+}
+.main_top {
+	TABLE-LAYOUT: auto; BACKGROUND: url(../images/left_bg.gif)
+}
+.menuhr {
+	BORDER-TOP: #b5cfde 1px solid; FONT-SIZE: 0px; FLOAT: left; MARGIN: 4px 0px 0px; WIDTH: 98%; LINE-HEIGHT: 0px; HEIGHT: 4px
+}

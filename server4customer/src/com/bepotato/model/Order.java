@@ -12,7 +12,7 @@ public class Order implements Serializable{
 	private int oid;
 	private int uid;
 	private String time;
-	private int location;
+	private String location;
 	private int men;
 	private double price;
 	private int state;
@@ -43,10 +43,10 @@ public class Order implements Serializable{
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public int getLocation() {
+	public String getLocation() {
 		return location;
 	}
-	public void setLocation(int location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 	public int getMen() {

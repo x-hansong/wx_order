@@ -1,6 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>wx_order</display-name>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Regedit</servlet-name>
+    <servlet-class>com.bepotato.action.Regedit</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddAdmin</servlet-name>
+    <servlet-class>com.bepotato.action.AddAdmin</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditAdmin</servlet-name>
+    <servlet-class>com.bepotato.action.EditAdmin</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditAdminPass</servlet-name>
+    <servlet-class>com.bepotato.action.EditAdminPass</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteAdmin</servlet-name>
+    <servlet-class>com.bepotato.action.DeleteAdmin</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditAdminDo</servlet-name>
+    <servlet-class>com.bepotato.action.EditAdminDo</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditType</servlet-name>
+    <servlet-class>com.bepotato.action.EditType</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteType</servlet-name>
+    <servlet-class>com.bepotato.action.DeleteType</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddType</servlet-name>
+    <servlet-class>com.bepotato.action.AddType</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddProduct</servlet-name>
+    <servlet-class>com.bepotato.action.AddProduct</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditProduct</servlet-name>
+    <servlet-class>com.bepotato.action.EditProduct</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteProduct</servlet-name>
+    <servlet-class>com.bepotato.action.DeleteProduct</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowAcceptOrders</servlet-name>
+    <servlet-class>com.bepotato.action.ShowAcceptOrders</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowLIuyan</servlet-name>
+    <servlet-class>com.bepotato.action.ShowLIuyan</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowLiuyan</servlet-name>
+    <servlet-class>com.bepotato.action.ShowLiuyan</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.bepotato.action.Login</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>Regedit</servlet-name>
+    <url-pattern>/servlet/Regedit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddAdmin</servlet-name>
+    <url-pattern>/servlet/AddAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditAdmin</servlet-name>
+    <url-pattern>/servlet/EditAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditAdminPass</servlet-name>
+    <url-pattern>/servlet/EditAdminPass</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteAdmin</servlet-name>
+    <url-pattern>/servlet/DeleteAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditAdminDo</servlet-name>
+    <url-pattern>/servlet/EditAdminDo</url-pattern>
+  </servlet-mapping>	
+   <servlet-mapping>
+    <servlet-name>EditType</servlet-name>
+    <url-pattern>/servlet/EditType</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteType</servlet-name>
+    <url-pattern>/servlet/DeleteType</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AddType</servlet-name>
+    <url-pattern>/servlet/AddType</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddProduct</servlet-name>
+    <url-pattern>/servlet/AddProduct</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditProduct</servlet-name>
+    <url-pattern>/servlet/EditProduct</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteProduct</servlet-name>
+    <url-pattern>/servlet/DeleteProduct</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowAcceptOrders</servlet-name>
+    <url-pattern>/servlet/ShowAcceptOrders</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowLIuyan</servlet-name>
+    <url-pattern>/servlet/ShowLIuyan</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowLiuyan</servlet-name>
+    <url-pattern>/servlet/ShowLiuyan</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/servlet/Login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditProductById</servlet-name>
+    <servlet-class>com.bepotato.action.EditProductById</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditProductById</servlet-name>
+    <url-pattern>/servlet/EditProductById</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowReserveOrders</servlet-name>
+    <servlet-class>com.bepotato.action.ShowReserveOrders</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowReserveOrders</servlet-name>
+    <url-pattern>/servlet/ShowReserveOrders</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminLogin</servlet-name>
+    <servlet-class>com.bepotato.action.AdminLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminLogin</servlet-name>
+    <url-pattern>/servlet/AdminLogin</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

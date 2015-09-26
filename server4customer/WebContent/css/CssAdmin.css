@@ -1,0 +1,133 @@
+﻿BODY{
+	SCROLLBAR-FACE-COLOR: #3A6592; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #3A6592; 
+	SCROLLBAR-SHADOW-COLOR: #3A6592; 
+	SCROLLBAR-DARKSHADOW-COLOR: #3A6592; 
+	SCROLLBAR-3DLIGHT-COLOR: #3A6592; 
+	SCROLLBAR-ARROW-COLOR: #FFFFFF;
+	SCROLLBAR-TRACK-COLOR: #4DB5E4;
+	color:#135294}
+
+BODY,td,div,table{FONT-SIZE: 9pt;line-height:150%;word-break:break-all;margin:0}
+A:link {
+    color: #2f2f2f;
+	text-decoration: none;
+}
+A:visited {
+    color: #2f2f2f;
+	text-decoration: none;
+}
+A:hover { 
+	color: #FF6600;
+	text-decoration: none;
+}
+td {
+    font-family:"宋体";
+	font-size: 12px;
+	color: #2f2f2f;
+	line-height: 16px;
+}
+/* 后台管理导航-------------------------------------- */
+td.SystemLeft {FILTER: alpha(opacity=100); COLOR: #ffffff; POSITION: relative
+}
+td.SystemLeft A:link {
+    color: #ffffff;
+	text-decoration: none;
+}
+td.SystemLeft A:visited {
+    color: #ffffff;
+	text-decoration: none;
+}
+td.SystemLeft A:hover { 
+	color: #FFFFFF;
+	text-decoration: none;
+}
+textarea.ConstSet {
+	background-color: #F8FAFC;
+	border: 1px solid #6FBFBF;
+	border-top: #6FBFBF 1px ridge; 
+	border-left: #6FBFBF 1px ridge; 
+    color: #333333;
+	scrollbar-3dlight-color:#DAE4EF;
+	scrollbar-arrow-color:#FFFFFF;
+	scrollbar-darkshadow-color:#DAE4EF;
+	scrollbar-face-color:#DAE4EF;
+	scrollbar-highlight-color:#DAE4EF;
+	scrollbar-shadow-color:#DAE4EF;
+	scrollbar-track-color:#F8FAFC;
+}
+.button { 
+	border-left: #ffffff 1px ridge; 
+	border-right: #333333 1px ridge; 
+	border-top: #ffffff 1px ridge; 
+	border-bottom: #1c1c1c 1px ridge; 
+    font-family:"宋体";
+	font-size: 12px;
+    color: #1c1c1c; 
+	background-color: #eafefe; 
+	cursor: hand; 
+}
+.textfield{
+	border-top-width:1px;
+	border-bottom-width:2px;
+	border-left-width:1px;
+	border-right-width:2px;
+	font-size: 12px;
+	color: #2f2f2f;
+}
+
+/* 后台管理类别树-------------------------------------- */
+.SortFolderOpen {
+	background-image: url(Sort_Folder_Close.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	left: 16px;
+	padding-left: 16px;
+	cursor: hand;
+}
+.SortFolderClose {
+	background-image: url(Sort_Folder_Open.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	left: 16px;
+	padding-left: 16px;
+	cursor: hand;
+}
+.SortEndFolderOpen {
+	background-image: url(SortEnd_Folder_Close.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	left: 16px;
+	padding-left: 16px;
+	cursor: hand;
+}
+.SortEndFolderClose {
+	background-image: url(SortEnd_Folder_Open.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	left: 16px;
+	padding-left: 16px;
+	cursor: hand;
+}
+.SortListline {
+	padding-left: 16px;
+	background-image: url(Sort_Listline.gif);
+	background-repeat: repeat-y;
+}
+.SortEndListline {
+	padding-left: 16px;
+}
+.SortFile {
+	background-image: url(Sort_File.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	cursor: hand;
+	padding-left: 16px;
+}
+.SortFileEnd {
+	background-image: url(Sort_File_End.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	cursor: hand;
+	padding-left: 16px;
+}

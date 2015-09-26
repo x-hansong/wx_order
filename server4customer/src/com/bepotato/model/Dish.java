@@ -16,6 +16,7 @@ public class Dish implements Serializable{
 	private String remarkString;
 	private String img;
 	private int sellcount;
+	private int tid;
 	public int getDid() {
 		return did;
 	}
@@ -58,6 +59,11 @@ public class Dish implements Serializable{
 	public void setSellcount(int sellcount) {
 		this.sellcount = sellcount;
 	}
-	
+	public void setTid(int tid){
+		this.tid=tid;
+	}
+	public int getTid(){
+		return tid;
+	}
 
 }
