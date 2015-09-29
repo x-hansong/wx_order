@@ -22,6 +22,7 @@ public class AddAdmin extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
+	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -37,6 +38,7 @@ public class AddAdmin extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -53,9 +55,10 @@ public class AddAdmin extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//µÃµ½¹ÜÀí±íµ¥ÖÐÌá½»µÄ¹ÜÀíÔ±Ãû×Ö£¬ºÍÃÜÂë¡£
+		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½á½»ï¿½Ä¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¡£
 		String aname=request.getParameter("aname");
 		String password=request.getParameter("password");
 
@@ -67,10 +70,10 @@ public class AddAdmin extends HttpServlet {
 		int flag=services.addAdmin(admins);
 		
 		if(flag==1){
-			System.out.println("ºóÌ¨Ìí¼Ó¹ÜÀíÔ±³É¹¦ÁË£¡");
+			System.out.println("ï¿½ï¿½Ì¨ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Ô±ï¿½É¹ï¿½ï¿½Ë£ï¿½");
 			response.sendRedirect("../Success.jsp");
 		}else{
-			System.out.println("ºóÌìÌí¼Ó¹ÜÀíÔ±Ê§°ÜÁË£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Ô±Ê§ï¿½ï¿½ï¿½Ë£ï¿½");
 			response.sendRedirect("../False.jsp");
 		}
 		
@@ -81,6 +84,7 @@ public class AddAdmin extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
+	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

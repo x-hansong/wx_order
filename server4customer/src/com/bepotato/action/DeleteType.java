@@ -21,6 +21,7 @@ public class DeleteType extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
+	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -36,6 +37,7 @@ public class DeleteType extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -52,6 +54,7 @@ public class DeleteType extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -60,10 +63,10 @@ public class DeleteType extends HttpServlet {
 		int flag=service.deleteType(typeid);
 		
 		if(flag==1){
-			System.out.println("É¾³ýÉÌÆ·Àà±ð³É¹¦£¡");
+			System.out.println("É¾ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 			response.sendRedirect("../Success.jsp");
 		}else{
-			System.out.println("É¾³ýÉÌÆ·ÐÅÏ¢Ê§°Ü£¡");
+			System.out.println("É¾ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢Ê§ï¿½Ü£ï¿½");
 			response.sendRedirect("../False.jsp");
 		}
 	}
@@ -73,6 +76,7 @@ public class DeleteType extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
+	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

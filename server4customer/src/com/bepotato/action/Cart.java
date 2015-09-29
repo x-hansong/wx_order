@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bepotato.model.Dish;
 import com.bepotato.model.DishImpl;
-import com.bepotato.model.User;
-import com.bepotato.model.UserImpl;
-import com.bepotato.util.HttpUtils;
 
 /**
  * Servlet implementation class Cart
@@ -37,6 +34,7 @@ public class Cart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request,
 	 *      HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException,
 			IOException {
@@ -65,6 +63,7 @@ public class Cart extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request,
 	 *      HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException,
 			IOException {

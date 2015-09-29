@@ -1,8 +1,6 @@
 package com.bepotato.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +20,7 @@ public class DeleteProduct extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
+	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -37,6 +36,7 @@ public class DeleteProduct extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -53,6 +53,7 @@ public class DeleteProduct extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -61,10 +62,10 @@ public class DeleteProduct extends HttpServlet {
 		int flag=service.deleteProduct(pid);
 		
 		if(flag==1){
-			System.out.println("É¾³ýÉÌÆ·³É¹¦£¡");
+			System.out.println("É¾ï¿½ï¿½ï¿½ï¿½Æ·ï¿½É¹ï¿½ï¿½ï¿½");
 			response.sendRedirect("../Success.jsp");
 		}else{
-			System.out.println("É¾³ýÉÌÆ·Ê§°Ü£¡");
+			System.out.println("É¾ï¿½ï¿½ï¿½ï¿½Æ·Ê§ï¿½Ü£ï¿½");
 			response.sendRedirect("../False.jsp");
 		}
 	}
@@ -74,6 +75,7 @@ public class DeleteProduct extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
+	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

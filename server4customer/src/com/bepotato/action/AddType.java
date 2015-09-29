@@ -21,6 +21,7 @@ public class AddType extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
+	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -36,6 +37,7 @@ public class AddType extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -52,6 +54,7 @@ public class AddType extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -61,10 +64,10 @@ public class AddType extends HttpServlet {
 		int flag=service.addType(typename);
 		
 		if(flag==1){
-			System.out.println("Àà±ðÌí¼Ó³É¹¦£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½");
 			response.sendRedirect("../Success.jsp");
 		}else{
-			System.out.println("Àà±ðÌí¼ÓÊ§°ÜÁË£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ë£ï¿½");
 			response.sendRedirect("../False.jsp");
 		}
 		
@@ -75,6 +78,7 @@ public class AddType extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
+	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

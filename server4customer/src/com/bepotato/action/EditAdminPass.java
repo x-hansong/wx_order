@@ -23,6 +23,7 @@ public class EditAdminPass extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
+	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -38,6 +39,7 @@ public class EditAdminPass extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -54,6 +56,7 @@ public class EditAdminPass extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -81,10 +84,10 @@ public class EditAdminPass extends HttpServlet {
 //		int flag=service.editAdminPass(admins);
 //		
 //		if(flag==1){
-//			System.out.println("¹ÜÀíÔ±ÃÜÂëÐÞ¸Ä³É¹¦ÁË£¡");
+//			System.out.println("ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä³É¹ï¿½ï¿½Ë£ï¿½");
 //			response.sendRedirect("../Success.jsp");
 //		}else{
-//			System.out.println("¹ÜÀíÔ±ÃÜÂëÐÞ¸ÄÊ§°ÜÁË£¡");
+//			System.out.println("ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ê§ï¿½ï¿½ï¿½Ë£ï¿½");
 //			response.sendRedirect("../False.jsp");
 //		}
 //		
@@ -96,6 +99,7 @@ public class EditAdminPass extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
+	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

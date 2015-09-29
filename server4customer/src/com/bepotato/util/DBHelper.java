@@ -1,13 +1,6 @@
 package com.bepotato.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.apache.commons.dbutils.QueryRunner;
-
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 
 public class DBHelper {

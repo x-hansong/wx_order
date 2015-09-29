@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bepotato.util.DBConnection;
-import com.oracle.jrockit.jfr.Producer;
 
 public class Service {
 	private DBConnection dbconnection;
@@ -20,7 +19,7 @@ public class Service {
 	
 	
 	/**
-	 * Ìí¼Ó¹ÜÀíÔ±
+	 * ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Ô±
 	 */
 	public int addAdmin(Admins admins){
 		dbconnection = new DBConnection();
@@ -37,7 +36,7 @@ public class Service {
 	}
 	
 	/**
-	 * É¾³ı¹ÜÀíÔ±
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 	 */
 	public int deleteAdmin(String aid){
 		dbconnection= new DBConnection();
@@ -55,7 +54,7 @@ public class Service {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞµÄ¹ÜÀíÔ±¡£
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ĞµÄ¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½
 	 */
 	public List getAllAdmin(){
 		list= new ArrayList();
@@ -81,7 +80,7 @@ public class Service {
 	}
 	
 	/**]
-	 * Í¨¹ı¹ÜÀíÔ±µÄid»ñµÃ¹ÜÀíÔ±µÄÃû×Ö
+	 * Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½idï¿½ï¿½Ã¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param aid
 	 * @return
 	 */
@@ -108,7 +107,7 @@ public class Service {
 	}
 	
 	/**
-	 * È·¶¨ĞŞ¸Ä¹ÜÀíÔ±ÃÜÂë 
+	 * È·ï¿½ï¿½ï¿½Ş¸Ä¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ 
 	 */
 	public int editAdminPass(String aid,String password){
 		System.out.println(aid);
@@ -130,7 +129,7 @@ public class Service {
 	}
 	
 	/**
-	 * Ìí¼ÓÉÌÆ·Àà±ğ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
 	 */
 	public int addType(String typename){
 		
@@ -148,7 +147,7 @@ public class Service {
 	}
 	
 	/**
-	 * ÁĞ³öËùÓĞÉÌÆ·µÄÀà±ğ
+	 * ï¿½Ğ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List getAllType(){
 		List list=new ArrayList();
@@ -171,7 +170,7 @@ public class Service {
 		return list;
 	}
 	/**
-	 * É¾³ıÉÌÆ·Àà±ğ
+	 * É¾ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
 	 * @param aid
 	 * @return
 	 */
@@ -191,7 +190,7 @@ public class Service {
 	}
 	
 	/**
-	 * Ìí¼ÓÉÌÆ·
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 	 */
 	public int addProduct(String pname,String ptype,String pinfo,String tid){
 		
@@ -209,7 +208,7 @@ public class Service {
 	}
 	
 	/**
-	 * ÁĞ³öËùÓĞµÄÉÌÆ·
+	 * ï¿½Ğ³ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½Æ·
 	 * @return
 	 */
 	public List getAllProduct(){
@@ -240,7 +239,7 @@ public class Service {
 	}
 	
 	/**
-	 * ÁĞ³öÄ³Ò»ÀàĞÍµÄÉÌÆ·
+	 * ï¿½Ğ³ï¿½Ä³Ò»ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Æ·
 	 * @param typeid
 	 * @return
 	 */
@@ -273,7 +272,7 @@ public class Service {
 	}
 	
 	/**
-	 * É¾³ıÉÌÆ·¶ÔÓ¦IDµÄÉÌÆ·
+	 * É¾ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ó¦IDï¿½ï¿½ï¿½ï¿½Æ·
 	 * @param aid
 	 * @return
 	 */
@@ -293,7 +292,7 @@ public class Service {
 	}
 	
 	/**
-	 * ÁĞ³öËùÓĞ µÄ¶©µ¥
+	 * ï¿½Ğ³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public List getAllOrders(){
@@ -418,7 +417,7 @@ public class Service {
 				String apass=rs.getString("password");
 				
 				if(aname.equals(username)&&apass.equals(password)){
-					System.out.println("µÇÈë³É¹¦yes£¡");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½É¹ï¿½yesï¿½ï¿½");
 					b=true;
 					break tag;
 				}
