@@ -9,7 +9,7 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int uid;
-	private int unionid;
+	private String openid;
 	private String nickname;
 	private int sex;
 	private String province;
@@ -18,18 +18,11 @@ public class User implements Serializable{
 	private int level;
 	private int grade;
 	private String phone;
-	private String token;
 	public int getUid() {
 		return uid;
 	}
 	public void setUid(int uid) {
 		this.uid = uid;
-	}
-	public int getUninoid() {
-		return unionid;
-	}
-	public void setUninoid(int unionid) {
-		this.unionid = unionid;
 	}
 	public String getNickname() {
 		return nickname;
@@ -79,11 +72,11 @@ public class User implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getToken() {
-		return token;
+	public String getOpenid() {
+		return openid;
 	}
-	public void setToken(String token) {
-		this.token = token;
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 }
