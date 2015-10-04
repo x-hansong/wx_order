@@ -1,3 +1,4 @@
+<%@page import="com.bepotato.model.User"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
@@ -23,7 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   request.setCharacterEncoding("utf-8");
   response.setCharacterEncoding("utf-8");
    %>
-  
+  <%
+  User user = (User)session.getAttribute("user");
+   %>
 <body>
 <!-- 用户信息头部
 <div class="body_header">
@@ -36,17 +39,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- 昵称 -->
 		<tr>
 			<td class="lt">昵称</td>
-			<td class="rt">虚之肾源</td>
+			<td class="rt"><%=user.getNickname() %></td>
 		</tr>
-		<!-- 姓名 -->
-		<tr>
-			<td class="lt">姓名</td>
-			<td class="rt">张文聪</td>
-		</tr>
+		
 		<!-- 手机号 -->
 		<tr>
 			<td class="lt">手机号</td>
-			<td class="rt">18814122680</td>
+			<td class="rt"><%=user.getPhone() %></td>
 		</tr>
 	</table>
 <!-- 底部菜单 -->

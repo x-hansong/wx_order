@@ -110,8 +110,11 @@ public class WeixinUtil {
 		return menu;
 	}
 	
-	public static int createMenu(String token,String menu){
+	public static int createMenu(String menu){
 		int result =0;
+		AccessTokenDao atDao = new AccessTokenDao();
+		atDao.checkToken();
+		String token = atDao.getAccessTokenBySQL().getToken();
 		String url = CREATE_MENU_URL.replace("ACCESS_TOKEN", token);
 		JSONObject jsonObject = doPostStr(url, menu);
 		if (jsonObject != null) {

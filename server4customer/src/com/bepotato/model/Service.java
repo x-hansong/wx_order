@@ -310,7 +310,7 @@ public class Service {
 				order.setMen(Integer.valueOf(rs.getString("men")));
 				order.setPay(Integer.valueOf(rs.getString("pay")));
 				order.setRemark(rs.getString("remark"));
-				order.setTime(rs.getString("time"));
+				order.setTime(rs.getTimestamp("time"));
 				order.setOid(Integer.valueOf(rs.getString("oid")));
 				order.setPrice(Double.valueOf(rs.getString("price")));
 				list.add(order);
@@ -336,7 +336,7 @@ public class Service {
 				order.setMen(Integer.valueOf(rs.getString("men")));
 				order.setPay(Integer.valueOf(rs.getString("pay")));
 				order.setRemark(rs.getString("remark"));
-				order.setTime(rs.getString("time"));
+				order.setTime(rs.getTimestamp("time"));
 				order.setOid(Integer.valueOf(rs.getString("oid")));
 				order.setPrice(Double.valueOf(rs.getString("price")));
 				list.add(order);
@@ -362,7 +362,7 @@ public class Service {
 				order.setMen(Integer.valueOf(rs.getString("men")));
 				order.setPay(Integer.valueOf(rs.getString("pay")));
 				order.setRemark(rs.getString("remark"));
-				order.setTime(rs.getString("time"));
+				order.setTime(rs.getTimestamp("time"));
 				order.setOid(Integer.valueOf(rs.getString("oid")));
 				order.setPrice(Double.valueOf(rs.getString("price")));
 				list.add(order);
@@ -388,7 +388,7 @@ public class Service {
 				order.setMen(Integer.valueOf(rs.getString("men")));
 				order.setPay(Integer.valueOf(rs.getString("pay")));
 				order.setRemark(rs.getString("remark"));
-				order.setTime(rs.getString("time"));
+				order.setTime(rs.getTimestamp("time"));
 				order.setOid(Integer.valueOf(rs.getString("oid")));
 				order.setPrice(Double.valueOf(rs.getString("price")));
 				list.add(order);

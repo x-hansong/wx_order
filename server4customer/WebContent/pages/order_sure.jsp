@@ -1,3 +1,6 @@
+<%@page import="com.bepotato.model.Dish"%>
+<%@page import="com.bepotato.model.DishImpl"%>
+<%@page import="com.bepotato.model.OrderItem"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
@@ -31,37 +34,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<p>订单确认</P>
 </div>
 -->
+
+<%
+List<OrderItem> itemCookieList = new ArrayList<OrderItem>();
+Cookie[] cookies = request.getCookies();
+		if(cookies!=null&&cookies.length>0)
+        {
+            for(Cookie c:cookies)
+            {
+                if(c.getName().startsWith("dish"))
+                {
+                	if(Integer.parseInt(c.getValue()) != 0){
+                	String idString = c.getName().substring(4);
+                	int id = Integer.parseInt(idString);
+                	OrderItem item = new OrderItem();
+                	item.setDid(id);
+                	item.setNum(Integer.parseInt(c.getValue()));
+                	itemCookieList.add(item);
+                	}
+                }
+            }
+        }
+ %>
+<%
+if(itemCookieList.size() >0)
+{
+ %>
+
 <!-- 提示 -->
 <div class="tips">请点击右上角扫描桌台号</div>
-<form action="#">
+<form action="<%=request.getContextPath()%>/CartServlet">
 <!-- 已选菜品 -->
+
+<%
+for(OrderItem item : itemCookieList){
+DishImpl dishImpl = new DishImpl();
+Dish dish = dishImpl.findById(item.getDid());
+ %>
 <div class="dishes">
-<div class="lt">梅干菜扣肉盖饭</div>
+<div class="lt"><%=dish.getName() %></div>
 <div class="rt">
 	<input type="button" class="minus"  value="-">
-	<input type="text" class="result" value="0">
+	<input type="text" class="result" value="<%=item.getNum()%>">
+	<input type="hidden" class="id" value="<%=dish.getDid()%>">
 	<input type="button" class="add" value="+">	
-	<p class="pr">￥<span class="price">60</span></p>
+	<p class="pr">￥<span class="price"><%=dish.getPrice() %></span></p>
 </div>
 </div>
-<div class="dishes">
-<div class="lt">红烧狮子头盖饭</div>
-<div class="rt">
-	<input type="button" class="minus"  value="-">
-	<input type="text" class="result" value="0">
-	<input type="button" class="add" value="+">	
-	<p class="pr">￥<span class="price">60</span></p>
-</div>
-</div>
-<div class="dishes">
-<div class="lt">红烧肉盖饭</div>
-<div class="rt">
-	<input type="button" class="minus"  value="-">
-	<input type="text" class="result" value="0">
-	<input type="button" class="add" value="+">	
-	<p class="pr">￥<span class="price">60</span></p>
-</div>
-</div>
+<%
+}
+ %>
+
 <!-- 支付方式 -->
 <div class="pay pay-top">
 	<label class="label-pay" for="pay-1">微信支付</label>
@@ -93,27 +116,81 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <input type="submit" class="input-2" name="submit" value="提交订单">
 </div>
 </form>
+
+<%
+}else{
+ %>
+ <form action="<%=request.getContextPath()%>/pages/order.jsp">
+ <div class="submit">
+<input type="submit" class="input-2" name="submit" value="什么都没有,回去点餐吧">
+</div>
+ 
+ </form>
+ 
+ <%
+  }
+  %>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script> 
 $(function(){ 
 
 $(".add").click(function(){
 var t=$(this).parent().find('input[class*=result]'); 
+var id=$(this).parent().find('input[class*=id]');
+var name ="dish"+id.val();
 t.val(parseInt(t.val())+1);
+addCookie(name,t.val(),0.5);
 setTotal(); 
 })
  
 $(".minus").click(function(){ 
-var t=$(this).parent().find('input[class*=result]'); 
+var t=$(this).parent().find('input[class*=result]');
+var id=$(this).parent().find('input[class*=id]');
+var name ="dish"+id.val(); 
 t.val(parseInt(t.val())-1);
-if(parseInt(t.val())<0){ 
+addCookie(name,t.val(),0.5);
+if(parseInt(t.val())<=0){ 
 t.val(0); 
+deleteCookie(name);
 } 
 setTotal(); 
 
 
 })
- 
+
+//该函数返回名称为name的cookie值，如果不存在则返回空
+function getCookie(name){ 
+var strCookie=document.cookie; 
+var arrCookie=strCookie.split("; "); 
+for(var i=0;i<arrCookie.length;i++){ 
+var arr=arrCookie[i].split("="); 
+if(arr[0]==name)return arr[1]; 
+} 
+return ""; 
+}
+
+//该函数接收3个参数：cookie名称，cookie值，以及在多少小时后过期。
+//这里约定expiresHours为0时不设定过期时间，即当浏览器关闭时cookie自动消失。
+function addCookie(name,value,expiresHours){ 
+var cookieString=name+"="+value; 
+//判断是否设置过期时间 
+if(expiresHours>0){ 
+var date=new Date(); 
+date.setTime(date.getTime+expiresHours*3600*1000); 
+cookieString=cookieString+"; expires="+date.toGMTString(); 
+} 
+document.cookie=cookieString; 
+}
+
+//该函数可以删除指定名称的cookie
+function deleteCookie(name){ 
+var date=new Date(); 
+date.setTime(date.getTime()-10000); 
+document.cookie=name+"=v; expires="+date.toGMTString(); 
+}
+
+
+
 function setTotal(){ 
 var s=0;
 <!--计算总额--> 

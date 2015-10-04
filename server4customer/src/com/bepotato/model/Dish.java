@@ -14,7 +14,7 @@ public class Dish implements Serializable{
 	private String name;
 	private double price;
 	private String remarkString;
-	private String img;
+	private String img;//格式如“resourse/images/4546.jgp”
 	private int sellcount;
 	private int tid;
 	public int getDid() {
@@ -65,5 +65,24 @@ public class Dish implements Serializable{
 	public int getTid(){
 		return tid;
 	}
+	@Override
+	public int hashCode() {
+		
+		return this.getDid()+this.getName().hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dish other = (Dish) obj;
+		if (did != other.did)
+			return false;
+		return true;
+	}
 
+	
 }

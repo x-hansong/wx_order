@@ -1,3 +1,4 @@
+<%@page import="com.bepotato.model.User"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
@@ -23,7 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   request.setCharacterEncoding("utf-8");
   response.setCharacterEncoding("utf-8");
    %>
-  
+  <%
+  User user = (User)session.getAttribute("user");
+   %>
 <body>
 <!-- 订座头部 
 <div class="body_header">
@@ -36,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 微信信息 -->
 	<div class="my-message">
 		<div class="lt-lt">
-			<img alt="微信头像" src="">	
+			<img alt="微信头像" src="<%=user.getHeadimgurl()%>">	
 		</div>
 		<div class="lt-rt">
 			<p class="my-name">微信昵称/电话号码</p>

@@ -1,3 +1,9 @@
+<%@page import="com.bepotato.model.OrderItem"%>
+<%@page import="com.bepotato.model.Cart"%>
+<%@page import="com.bepotato.model.Dish"%>
+<%@page import="com.bepotato.model.DishImpl"%>
+<%@page import="com.bepotato.model.TypeImpl"%>
+<%@page import="com.bepotato.model.Type"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
@@ -45,547 +51,77 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 </div>
 	 <!-- 右侧菜品内容 -->
 	 <div id="container" class="container">
-	 	<div class="section" id="st1">
-	<div class="title">推荐</div>
+	 <%
+	 //获取cookie中未成功支付的记录
+List<OrderItem> itemCookieList = new ArrayList<OrderItem>();
+Cookie[] cookies = request.getCookies();
+		if(cookies!=null&&cookies.length>0)
+        {
+            for(Cookie c:cookies)
+            {
+                if(c.getName().startsWith("dish"))
+                {
+                	String idString = c.getName().substring(4);
+                	int id = Integer.parseInt(idString);
+                	OrderItem item = new OrderItem();
+                	item.setDid(id);
+                	item.setNum(Integer.parseInt(c.getValue()));
+                	itemCookieList.add(item);
+                }
+            }
+        }
+ %>
+	 
+	 
+	 <%
+	 TypeImpl typeImpl = new TypeImpl();
+	 List<Type> typeList = typeImpl.getTypes();
+	 if(typeList !=null){
+	 for(int i=0;i<typeList.size();i++){
+	 Type type = typeList.get(i);
+	  %>
+	 
+	<div class="section" id="st<%=type.getTid() %>">
+	<div class="title"><%=type.getName() %></div>
+	
+	<%
+	DishImpl dishImpl = new DishImpl();
+	List<Dish> dishList = dishImpl.findByType(type.getTid());
+	if(dishList !=null){
+	for(int j=0;j<dishList.size();j++){
+	Dish dish = dishList.get(j);
+	int CookieNum =0;
+	for(OrderItem orderItem : itemCookieList){
+	if(dish.getDid() == orderItem.getDid()){
+	CookieNum = orderItem.getNum();
+	}
+	}
+	 %>
   	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
+    	<div class="lt-lt"><img src="<%=dish.getImg() %>"></div>
         <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
+        	<p><%=dish.getName() %></p>
+			<p>介绍：<%=dish.getRemarkString() %></p>
+            <p class="pr">￥<span class="price"><%=dish.getPrice() %></span></p>
         </div>
         <div class="lt-rt">
         	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
+        	<input type="text" class="result" value="<%=CookieNum%>">
+        	<input type="hidden" class="id" value="<%=dish.getDid()%>">
         	<input type="button" class="add" value="+">
         </div>
     </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
+    <%
+    }
+    }
+     %>
     </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	</div>
-	<div class="section" id="st2">
-	<div class="title">披萨</div>
-  	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	</div>
-	<div class="section" id="st3">
-	<div class="title">意面</div>
-  	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	</div>
-	<div class="section" id="st4">
-	<div class="title">扒&amp;饭</div>
-  	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	</div>
-	<div class="section" id="st5">
-	<div class="title">汤</div>
-  	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	</div>
-	<div class="section" id="st6">
-	<div class="title">小吃</div>
-  	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	</div>
-	<div class="section" id="st7">
-	<div class="title">饮品</div>
-  	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	<div class="prt-lt">
-    	<div class="lt-lt"><img src="#"></div>
-        <div class="lt-ct">
-        	<p>菜名</p>
-			<p>份量</p>
-            <p class="pr">￥<span class="price">60.00</span></p>
-        </div>
-        <div class="lt-rt">
-        	<input type="button" class="minus"  value="-">
-        	<input type="text" class="result" value="0">
-        	<input type="button" class="add" value="+">
-        </div>
-    </div>
-	</div>
+    <%
+    }
+    }
+     %>
+    
+	
 	 </div>
 </div>
 <!-- 统计标签 -->
@@ -620,10 +156,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</a></li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+function doCart(){
+var ids = document.querySelectorAll(".id"); 
+var nums = document.querySelectorAll(".result"); 
+var length = ids.length;
+var CartString; 
+for(var i=0; i<length; i++){ 
+if(nums[i] !=0){
+var id=ids[i];
+var num = num[i];
+CartString +=id+"-"+num+"*";
+}
+} 
+document.cookie="CartString="+CartString;
+}
+</script>
+
+
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/swiper.3.1.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.nav.js"></script>
 <script type="text/javascript">
+
+
 $(function(){
 	$('#nav').onePageNav();
 });
@@ -634,32 +191,71 @@ $(function(){
 
 $(".add").click(function(){
 var t=$(this).parent().find('input[class*=result]'); 
+var id=$(this).parent().find('input[class*=id]');
+var name ="dish"+id.val();
 t.val(parseInt(t.val())+1);
+addCookie(name,t.val(),0.5);
 setTotal(); 
 })
  
 $(".minus").click(function(){ 
 var t=$(this).parent().find('input[class*=result]'); 
+var id=$(this).parent().find('input[class*=id]');
+var name ="dish"+id.val();
 t.val(parseInt(t.val())-1);
-if(parseInt(t.val())<0){ 
-t.val(0); 
+addCookie(name,t.val(),0.5);
+if(parseInt(t.val())<=0){ 
+t.val(0);
+deleteCookie(name); 
 } 
 setTotal(); 
 
 
 })
- 
+
+//该函数返回名称为name的cookie值，如果不存在则返回空
+function getCookie(name){ 
+var strCookie=document.cookie; 
+var arrCookie=strCookie.split("; "); 
+for(var i=0;i<arrCookie.length;i++){ 
+var arr=arrCookie[i].split("="); 
+if(arr[0]==name)return arr[1]; 
+} 
+return ""; 
+}
+
+//该函数接收3个参数：cookie名称，cookie值，以及在多少小时后过期。
+//这里约定expiresHours为0时不设定过期时间，即当浏览器关闭时cookie自动消失。
+function addCookie(name,value,expiresHours){ 
+var cookieString=name+"="+value; 
+//判断是否设置过期时间 
+if(expiresHours>0){ 
+var date=new Date(); 
+date.setTime(date.getTime+expiresHours*3600*1000); 
+cookieString=cookieString+"; expires="+date.toGMTString(); 
+} 
+document.cookie=cookieString; 
+}
+
+//该函数可以删除指定名称的cookie
+function deleteCookie(name){ 
+var date=new Date(); 
+date.setTime(date.getTime()-10000); 
+document.cookie=name+"=v; expires="+date.toGMTString(); 
+}
+
+
 function setTotal(){ 
 var s=0;
 var v=0;
 var n=0;
-<!--计算总额--> 
+//计算总额
 $(".lt-rt").each(function(){ 
 s+=parseInt($(this).find('input[class*=result]').val())*parseFloat($(this).siblings().find('span[class*=price]').text()); 
 
 });
 
-<!--计算菜种-->
+//计算菜种
 var nIn = $("li.current a").attr("href");
 $(nIn+" input[type='text']").each(function() {
 	if($(this).val()!=0){
@@ -667,7 +263,7 @@ $(nIn+" input[type='text']").each(function() {
 	}
 });
 
-<!--计算总份数-->
+//计算总份数
 $("input[type='text']").each(function(){
 	v += parseInt($(this).val());
 });
