@@ -65,8 +65,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</a></li>
 	<li><a href="<%=request.getContextPath() %>/pages/my_order.jsp">
 		<dl>
-			<dt><img alt="我的订单" src="images/me_1.png" /></dt>
-			<dd class="dingdan-dd">我的订单</dd>
+			<dt><img alt="个人中心" src="images/me_1.png" /></dt>
+			<dd class="dingdan-dd">个人中心</dd>
 		</dl>
 	</a></li>
 	</ul>

@@ -1,8 +1,5 @@
-<%@page import="com.bepotato.model.OrderItem"%>
-<%@page import="com.bepotato.model.Dish"%>
-<%@page import="com.bepotato.model.DishImpl"%>
-<%@page import="com.bepotato.model.Order"%>
-<%@page import="com.bepotato.model.OrderImpl"%>
+<%@page import="com.bepotato.model.Advance"%>
+<%@page import="com.bepotato.model.AdvanceImpl"%>
 <%@page import="com.bepotato.model.User"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
@@ -15,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>我的订单</title>
+    <title>我的订座</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -38,62 +35,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 -->
 <%
-User user = null;
+User user =null;
 user = (User)session.getAttribute("user");
-OrderImpl orderImpl = new OrderImpl();
-DishImpl dishImpl = new DishImpl();
-List<Order> orders = new ArrayList<Order>();
-List<OrderItem> items = new ArrayList<OrderItem>();
-orders = orderImpl.findOrdersByUid(user.getUid());
-
-if(orders != null && orders.size()>0){
-for(Order o : orders){
-String state = null;
-if(o.getState() == 1){
-state = "处理中";
-}else{
-state = "已完成";
-}
-items = orderImpl.getOrderItem(o.getOid());
-if(items != null && items.size()>0){
+AdvanceImpl advanceImpl =new AdvanceImpl();
+List<Advance> advances = new ArrayList<Advance>();
+advances = advanceImpl.findAdvanceByUid(user.getUid());
+if(advances != null && advances.size()>0){
+for(Advance ad:advances){
+if(ad !=null){
 
  %>
 
-
 <table class="main">
 	<tr>
-		<td class="lt"><%=o.getTime() %></td>
-		<td class="rt"><%=state %></td>
-	</tr>
-	<%
-	for(OrderItem i:items){
-	Dish dish = dishImpl.findById(i.getDid());
-	if(dish != null){
-	 %>
-	<tr>
-		<td class="lt"><%=dish.getName() %></td>
-		<td class="rt">
-			<table>
-				<tr>
-					<td class="rt-lt"><%=i.getNum() %></td>
-					<td class="rt-rt">￥<%=dish.getPrice()*i.getNum()*dish.getSellcount() %></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<%
-	}
-	}
-	 %>
-
-	
-	<tr class="part-2">
-		<td class="lt">优惠券</td>
-		<td class="rt">0</td>
+		<td class="lt">下单时间</td>
+		<td class="rt"><%=ad.getTime() %></td>
 	</tr>
 	<tr>
-		<td class="lt">合计</td>
-		<td class="rt">￥<%=o.getPrice() %></td>
+		<td class="lt">预定时间</td>
+		<td class="rt"><%=ad.getBooktime() %></td>
+	</tr>
+	<tr>
+		<td class="lt">人数</td>
+		<td class="rt"><%=ad.getMen() %></td>
+	</tr>
+	<tr>
+		<td class="lt">联系人</td>
+		<td class="rt"><%=ad.getName() %></td>
+	</tr>
+	<tr>
+		<td class="lt">联系电话</td>
+		<td class="rt"><%=ad.getPhone() %></td>
+	</tr>
+	<tr>
+		<td class="lt">桌号</td>
+		<td class="rt"><%=ad.getLocation() %></td>
+	</tr>
+	<tr>
+		<td class="lt">备注</td>
+		<td class="rt"><%=ad.getRemark() %></td>
 	</tr>
 </table>
 <!-- 分割线 -->
@@ -103,18 +83,15 @@ if(items != null && items.size()>0){
 }
 }else{
  %>
-  <form action="<%=request.getContextPath()%>/pages/order.jsp">
+   <form action="<%=request.getContextPath()%>/pages/home.jsp">
  <div class="submit">
-<input type="submit" class="input-2" name="submit" value="什么都没有,回去点餐吧">
-</div>
- 
+<input type="submit" class="input-2" name="submit" value="什么都没有,回去再约吧">
+</div> 
  </form>
  
 <%
 }
  %>
-
-
 <!-- 底部菜单 -->
 <div class="body_footer">
 	<ul>

@@ -36,6 +36,19 @@ public class OrderImpl implements OrderDao{
 		}
 		return order;
 	}
+	
+	public List<Order> findOrdersByUid(int uid) {
+		String sql = "select * from orders where uid = ? order by oid DESC";
+		ResultSetHandler<List<Order>> rsHandler = new BeanListHandler<Order>(Order.class);
+		List<Order> orders  = null;
+		try {
+			orders = runner.query(connection,sql, rsHandler,uid);
+		} catch (Exception e) {
+			// TODO: handle exception	
+			e.printStackTrace();
+		}
+		return orders;
+	}
 
 	public List<OrderItem> getOrderItem(int oid){
 		String sql = "select * from orderitem where oid =?";

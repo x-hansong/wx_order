@@ -114,7 +114,18 @@ function toastFunction(messageString){
    if(bookingseat != null && "1".equals(bookingseat)){
    %>
    <script type="text/javascript">
-   toastFunction("成功订座<br/>可在我的订单查看");
+   toastFunction("成功订座<br/>可在个人中心查看");
+   </script>
+   <%
+   }
+   %>
+   
+    <% 
+   String ordersure = request.getParameter("ordersure");
+   if(ordersure != null && "1".equals(ordersure)){
+   %>
+   <script type="text/javascript">
+   toastFunction("成功下单<br/>可在个人中心查看");
    </script>
    <%
    }
@@ -139,10 +150,10 @@ function toastFunction(messageString){
 <div class="tuijian">推荐</div>
 <div class="swiper-container swiper-container-2">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><a href="#"><img alt="菜品1" src="images/banner01.jpg" /></a></div>
-            <div class="swiper-slide"><a href="#"><img alt="菜品2"  src="images/banner02.jpg" /></a></div>
-            <div class="swiper-slide"><a href="#"><img alt="菜品3" src="images/banner03.jpg" /></a></div>
-            <div class="swiper-slide"><a href="#"><img alt="菜品4" src="images/banner04.jpg" /></a></div>
+            <div class="swiper-slide"><img alt="菜品1" src="images/banner01.jpg" /></div>
+            <div class="swiper-slide"><img alt="菜品2"  src="images/banner02.jpg" /></div>
+            <div class="swiper-slide"><img alt="菜品3" src="images/banner03.jpg" /></div>
+            <div class="swiper-slide"><img alt="菜品4" src="images/banner04.jpg" /></div>
         </div>
 		 <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
@@ -154,10 +165,12 @@ function toastFunction(messageString){
 <a href="<%=request.getContextPath() %>/pages/order_seat.jsp">
 	<div class="order-seat" align="center"><div class="juzhong"><img alt="订座" src="images/bookSeats.png" align="middle" />订座</div></div>
 </a>
-<a href="#">
-<div class="call-one" align="center"><img  alt="服务员" src="images/callWaiter.png" align="middle" />
+<script type="text/javascript">
+var call = "已经通知<br/>请稍等";
+</script>
+<div class="call-one" align="center" onclick="toastFunction(call)"><img  alt="服务员" src="images/callWaiter.png" align="middle" />
   服务员</div>
-</a>
+
 </div>
 <!-- 联系电话 -->
 <div class="message">
@@ -185,8 +198,8 @@ function toastFunction(messageString){
 	</a></li>
 	<li><a href="<%=request.getContextPath() %>/pages/my_order.jsp">
 		<dl>
-			<dt><img alt="我的订单" src="images/me.png" /></dt>
-			<dd class="dingdan-dd">我的订单</dd>
+			<dt><img alt="个人中心" src="images/me.png" /></dt>
+			<dd class="dingdan-dd">个人中心</dd>
 		</dl>
 	</a></li>
 	</ul>

@@ -28,6 +28,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="js/mobiscroll.js" type="text/javascript"></script>
 	<script src="js/mobiscroll_003.js" type="text/javascript"></script>
 	<script src="js/mobiscroll_005.js" type="text/javascript"></script>
+    <style type="text/css">
+     #toastMessage{
+        position: absolute;
+        border-radius: 15px;
+        cursor:pointer;
+     }
+   </style>
 
         <script type="text/javascript">
 /** 

@@ -3,11 +3,24 @@ package com.bepotato.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.bepotato.dao.AdvanceDao;
 import com.bepotato.util.DBHelper;
 
 public class AdvanceImpl implements AdvanceDao{
+	
+	private QueryRunner runner;
+	private Connection connection;
+	public AdvanceImpl(){
+		// TODO Auto-generated constructor stub
+		runner = new QueryRunner();
+		connection = DBHelper.getConnection();
+	}
 
 	@Override
 	public boolean addAdvance(Advance advance) {
@@ -53,6 +66,19 @@ public class AdvanceImpl implements AdvanceDao{
 				}
 			}
 		}
+	}
+	
+	public List<Advance> findAdvanceByUid(int uid) {
+		String sql = "select * from advances where uid = ? order by aid DESC";
+		ResultSetHandler<List<Advance>> rsHandler = new BeanListHandler<Advance>(Advance.class);
+		List<Advance> Advances  = null;
+		try {
+			Advances = runner.query(connection,sql, rsHandler,uid);
+		} catch (Exception e) {
+			// TODO: handle exception	
+			e.printStackTrace();
+		}
+		return Advances;
 	}
 
 }

@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>我的订单</title>
+    <title>个人中心</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -54,10 +54,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 已点订单 -->
 	<div class="ordered">
 		<div class="lt">
-			<p>已点订单</p>
+			<p>我的订单</p>
 		</div>
 		<div class="rt">
 			<a href="<%=request.getContextPath() %>/pages/order_message.jsp"><img src="images/u84.png"></a>	
+		</div>
+	</div>
+</div>
+<div class="part-2">
+<!-- 已订订座 -->
+	<div class="ordered">
+		<div class="lt">
+			<p>我的订座</p>
+		</div>
+		<div class="rt">
+			<a href="<%=request.getContextPath() %>/pages/orderseat_message.jsp"><img src="images/u84.png"></a>	
 		</div>
 	</div>
 </div>
@@ -97,8 +108,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</a></li>
 	<li><a href="<%=request.getContextPath() %>/pages/my_order.jsp">
 		<dl>
-			<dt><img alt="我的订单" src="images/me_1.png" /></dt>
-			<dd class="dingdan-dd">我的订单</dd>
+			<dt><img alt="个人中心" src="images/me_1.png" /></dt>
+			<dd class="dingdan-dd">个人中心</dd>
 		</dl>
 	</a></li>
 	</ul>

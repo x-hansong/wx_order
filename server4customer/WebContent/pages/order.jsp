@@ -1,5 +1,4 @@
 <%@page import="com.bepotato.model.OrderItem"%>
-<%@page import="com.bepotato.model.Cart"%>
 <%@page import="com.bepotato.model.Dish"%>
 <%@page import="com.bepotato.model.DishImpl"%>
 <%@page import="com.bepotato.model.TypeImpl"%>
@@ -24,6 +23,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	<link type="text/css" rel="stylesheet" href="css/order.css" />
     <link type="text/css" rel="stylesheet" href="css/swiper.3.1.2.min.css" />
+    <script src="js/jquery.1.7.2.min.js" type="text/javascript"></script>
+    <style type="text/css">
+     #toastMessage{
+        position: absolute;
+        border-radius: 15px;
+        cursor:pointer;
+     }
+   </style>
+     
+     <script type="text/javascript">
+/** 
+ * 模仿android里面的Toast效果，主要是用于在不打断程序正常执行的情况下显示提示数据 
+ * @param config 
+ * @return 
+ */  
+var Toast = function(config){  
+    this.context = config.context==null?$('body'):config.context;//上下文  
+    this.message = config.message;//显示内容  
+    this.time = config.time==null?10000:config.time;//持续时间  
+    this.left = config.left;//距容器左边的距离  
+    this.top = config.top;//距容器上方的距离  
+    this.init();  
+}  
+var msgEntity;  
+Toast.prototype = {  
+    //初始化显示的位置内容等  
+    init : function(){  
+        $("#toastMessage").remove();  
+        //设置消息体  
+        var msgDIV = new Array();  
+        msgDIV.push('<div id="toastMessage">');  
+        msgDIV.push('<span>'+this.message+'</span>');  
+        msgDIV.push('</div>');  
+        msgEntity = $(msgDIV.join('')).appendTo(this.context);  
+        //设置消息样式  
+        var toastMessageWidth = $('#toastMessage').innerWidth();
+        var toastMessageHeight = $('#toastMessage').innerHeight();
+        var windowWidth = $(window).width();
+        var windowHeight = $(window).height();
+        var newWidth = (windowWidth - toastMessageWidth - 80) / 2 + "px";
+        var newHeight = (windowHeight - toastMessageHeight - 80) / 2 + "px";
+        msgEntity.css({'left':newWidth,'z-index':'999999','top':newHeight,'background-color':'black','color':'white',
+            'padding':'30px','font-size':'18px','border':'3px solid #f8c26d'});  
+    },  
+    //显示动画  
+    show :function(){  
+        msgEntity.fadeIn(this.time/2);  
+        msgEntity.fadeOut(this.time/2);  
+    }        
+}
+function toastFunction(messageString){
+    new Toast({context:$('body'),message:messageString}).show();
+    }
+</script>
 
   </head>
   <%
@@ -32,6 +85,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    %>
   
 <body>
+
+    <% 
+   String ordersure = request.getParameter("ordersure");
+   if(ordersure != null && "2".equals(ordersure)){
+   %>
+   <script type="text/javascript">
+   toastFunction("肚子好饿了<br/>吃点东西嘛");
+   </script>
+   <%
+   }
+   %>
+
 <!-- 头部
 <div class="body_header">点餐</div>
  -->
@@ -61,12 +126,14 @@ Cookie[] cookies = request.getCookies();
             {
                 if(c.getName().startsWith("dish"))
                 {
+                if(Integer.parseInt(c.getValue()) > 0){
                 	String idString = c.getName().substring(4);
                 	int id = Integer.parseInt(idString);
                 	OrderItem item = new OrderItem();
                 	item.setDid(id);
                 	item.setNum(Integer.parseInt(c.getValue()));
                 	itemCookieList.add(item);
+                	}
                 }
             }
         }
@@ -120,6 +187,11 @@ Cookie[] cookies = request.getCookies();
     }
     }
      %>
+    <%--测试代码 --%>
+    <%
+    Cookie test = new Cookie("name","test");
+    response.addCookie(test);
+     %>
     
 	
 	 </div>
@@ -150,8 +222,8 @@ Cookie[] cookies = request.getCookies();
 	</a></li>
 	<li><a href="<%=request.getContextPath() %>/pages/my_order.jsp">
 		<dl>
-			<dt><img alt="我的订单" src="images/me.png" /></dt>
-			<dd class="dingdan-dd">我的订单</dd>
+			<dt><img alt="个人中心" src="images/me.png" /></dt>
+			<dd class="dingdan-dd">个人中心</dd>
 		</dl>
 	</a></li>
 	</ul>
@@ -232,7 +304,7 @@ var cookieString=name+"="+value;
 if(expiresHours>0){ 
 var date=new Date(); 
 date.setTime(date.getTime+expiresHours*3600*1000); 
-cookieString=cookieString+"; expires="+date.toGMTString(); 
+cookieString=cookieString+"; expires="+date.toGMTString()+";path=/"; 
 } 
 document.cookie=cookieString; 
 }
