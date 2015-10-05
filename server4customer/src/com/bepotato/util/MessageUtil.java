@@ -100,21 +100,21 @@ public class MessageUtil {
 	
 	public static String menuText(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("��ӭ��Ĺ�ע���밴����ʾ���в�����\n\n");
-		sb.append("�ظ�1>>�����Ľ���\n");
-		sb.append("�ظ�2>>Ф���Ľ���\n");
-		sb.append("�ظ�?>>�����˲˵�");
+		sb.append("我早已饥渴难耐了，欢迎关注比逗\n\n");
+		sb.append("回复1：了解比逗餐厅\n");
+		sb.append("回复2：获取比逗餐厅地址\n");
+		sb.append("回复？：调出此菜单");
 		return sb.toString();
 	}
 	
 	public static String firstMenu(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("������һ���ܺ�����罻ƽ̨����Ҷ����������﷢���Լ�������");
+
 		return sb.toString();
 	}
 	public static String secondMenu(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("Ф����һλ˧�磡");
+
 		return sb.toString();
 	}
 	

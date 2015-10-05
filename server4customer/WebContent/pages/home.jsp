@@ -89,19 +89,18 @@ function toastFunction(messageString){
    String code = request.getParameter("code");
    //判断是否第一次进入
    if(code != null){
+   //session属性名称不能用online，会产生冲突
+   String online ="1";
+   session.setAttribute("alreadyOn",online);
    JSONObject jsonObject = UserUtil.getAuthJsonObj(code);
    if(jsonObject !=null){
    String openid = jsonObject.getString("openid");
-   //int subscribe = UserUtil.getSubscribeCode(OpenId);
-   //if(subscribe == 1){
    User userTemp = UserUtil.getUserByOpenId(openid);
    //更新用户的信息，前提是用户已经关注了公众号
    UserImpl userImpl = new UserImpl();
    userImpl.refreshUser(userTemp, openid);
    User user = userImpl.findByOpenId(openid);
    session.setAttribute("user", user);
-   //}else{
-   //}
    }
    }
     %>
@@ -222,4 +221,6 @@ var swiper2 = new Swiper('.swiper-container-2', {
 </script>
 
 </body>
+
+
 </html>
