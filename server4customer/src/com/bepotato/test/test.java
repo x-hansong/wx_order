@@ -7,9 +7,19 @@ import net.sf.json.JSONObject;
 import com.bepotato.po.AccessTokenDao;
 import com.bepotato.util.WeixinUtil;
 
+import java.util.UUID;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Formatter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.io.UnsupportedEncodingException;  
+
 public class test {
 
 	public static void main(String[] args) {
+		
+		//创建菜单
 //		String menu = JSONObject.fromObject(WeixinUtil.initMenu()).toString();
 //		int result = WeixinUtil.createMenu(menu);
 //		if (result == 0) {
@@ -18,6 +28,7 @@ public class test {
 //			System.out.println("错误码："+result);
 //		}
 		
+		//获取二维码
 //		JSONObject tjsonObj = WeixinUtil.getTicketJsonObj(2015,604800);
 //		String ticketString = tjsonObj.getString("ticket");
 //		int expire_seconds = tjsonObj.getInt("expire_seconds");
@@ -29,8 +40,7 @@ public class test {
 //		String qrcodeUrl = WeixinUtil.getQrcodeUrl(tjsonObj);
 //		System.out.println("qrcodeUrl:"+qrcodeUrl);
 
-		String url = WeixinUtil.CreateURL(WeixinUtil.MY_URL+"/pages/home.jsp");
-		System.out.println(url);
 		
 	}
+
 }

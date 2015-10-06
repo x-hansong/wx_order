@@ -38,18 +38,29 @@ public class WeixinFilter implements Filter{
 		String code =null;
 		code = request.getParameter("code");
 		
+		StringBuffer sb = new StringBuffer();
+		//不用过滤的路径
+		String noFilterPaths = null;
 		//如果是调用接口页面，直接放行
-		if (request.getRequestURI().indexOf("weixin.qq.com") != -1) {
-			filterChain.doFilter(servletRequest, servletResponse);
-			return;
-		}
-		//链接中包含有pages
-		if (request.getRequestURI().indexOf("pages") != -1) {
-			//如果是二维码页面就放行
-			if (request.getRequestURI().indexOf("pages/qrCode.jsp") != -1) {
-				filterChain.doFilter(servletRequest, servletResponse);
-				return;
+		sb.append("qq.com;");
+		//如果是二维码页面就放行
+		sb.append("pages/qrCode.jsp;");
+		
+		noFilterPaths = sb.toString();
+
+	    if (noFilterPaths != null) {
+			String [] strArray =  noFilterPaths.split(";");	
+			for (int i = 0; i < strArray.length; i++) {
+				if (strArray[i] == null || "".equals(strArray[i])) continue;
+				
+				if (request.getRequestURI().indexOf(strArray[i]) != -1) {
+					filterChain.doFilter(servletRequest, servletResponse);
+					return;
+				}
 			}
+		} 
+	    //链接中包含有pages
+		if (request.getRequestURI().indexOf("pages") != -1) {
 			if("1".equals(online) || code!=null){
 				filterChain.doFilter(servletRequest, servletResponse);
 				return;

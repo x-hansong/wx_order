@@ -36,7 +36,7 @@ public class WeixinUtil {
 	public static String DELETE_MENU_URL ="https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
 	public static String TICKET_URL="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=TOKEN";
 	public static String QRCODE_URL="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET";
-	public static final String MY_URL ="http://bepotato.tunnel.mobi/wx_order";
+	public static final String MY_URL ="http://bepotato.tunnel.mobi";
 	
 	/**
 	 * get����
