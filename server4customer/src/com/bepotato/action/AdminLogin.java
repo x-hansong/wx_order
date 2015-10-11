@@ -24,6 +24,7 @@ public class AdminLogin extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
+	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -39,6 +40,7 @@ public class AdminLogin extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -55,6 +57,7 @@ public class AdminLogin extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -66,7 +69,7 @@ public class AdminLogin extends HttpServlet {
 		boolean b=service.login(username, password);
 		
 		if(b){
-			// Ã»ÓÐµÇÂ¼£¬²»»á±£´æÓÐÀàÐÍ£¬ÐèÒªÖØÐÂµÇÂ¼
+			// Ã»ï¿½Ðµï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½á±£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Âµï¿½Â¼
 			List list = new ArrayList();
 			list=service.getAllType();
 			request.getSession().setAttribute(Data.TYPES, list);
@@ -81,6 +84,7 @@ public class AdminLogin extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
+	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

@@ -40,6 +40,9 @@ public class ShopImpl implements ShopDao{
 	@Override
 	public boolean addShop(Shop shop) {
 		// TODO Auto-generated method stub
+		if(shop!=null)
+			return true;
+		else
 		return false;
 	}
 
