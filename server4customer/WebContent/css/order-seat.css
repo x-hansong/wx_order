@@ -1,0 +1,137 @@
+/* CSS Document */
+body {
+text-align: left;
+color: #666;
+font-family: "Î¢ÈíÑÅºÚ","Arial Black", Gadget, sans-serif;
+font-size:14px;
+background-color:#f4f4f4;
+}
+body, div, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+margin: 0;
+padding: 0;
+}
+.body_header{
+width: 100%;
+height: 35px;
+line-height:35px;
+background-color:#333333;
+text-align:center;
+font-size:20px;
+color:#FFFFFF;
+margin-bottom:10px;
+}
+.body_header p{
+position:relative;
+right:20px;
+}
+.goback{
+display:block;
+float:left;
+margin: 0;
+padding: 0;
+border:none;
+width:40px;
+height:25px;
+background: url(../images/goback.png) #333333;
+background-size:100%;
+}
+.content {
+            padding: 8px;;
+            background: #fff;
+			margin-top:2px;
+        }
+ .content input{
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #aaa;
+            box-sizing: border-box;
+            border-radius: 5px;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -webkit-border-radius: 5px;
+        }
+		.input-1{
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #aaa;
+            box-sizing: border-box;
+            border-radius: 5px;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -webkit-border-radius: 5px;
+        }
+		.input-2{
+		width: 80%;
+		font-size:16px;
+		font-weight:bold;
+            padding: 15px;
+			border: 1px solid #02c15a;
+            margin: 25px AUTO;
+			background:#02C15A;
+			color:#FFFFFF;
+            box-sizing: border-box;
+            border-radius: 5px;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -webkit-border-radius: 5px;
+		}
+textarea{
+margin-left:30px;
+ border: 1px solid #aaa;
+            box-sizing: border-box;
+            border-radius: 5px;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -webkit-border-radius: 5px;
+}
+select {
+            width:100%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #aaa;
+            box-sizing: border-box;
+            border-radius: 5px;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -webkit-border-radius: 5px;
+}
+.dingzuo{
+margin-left:10px;
+margin-bottom:5px;
+text-align:center;
+height:14px;
+line-height:14px;
+width:35px;
+background:#f8b551;
+font-size:10px;
+color:#FFFFFF;
+border-radius:3px;
+}
+.lianxi{
+margin-left:10px;
+margin-bottom:5px;
+text-align:center;
+height:14px;
+line-height:14px;
+width:35px;
+background:#00a0e9;
+font-size:10px;
+color:#FFFFFF;
+border-radius:3px;
+}
+.order-money{
+padding: 15px;
+color:#a0a0a0;
+}
+.prompt{
+text-align:right;
+font-size:10px;
+}
+.content-1{
+margin-top:20px;
+}
+.submit{
+text-align:center;
+}

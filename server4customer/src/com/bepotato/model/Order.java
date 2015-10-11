@@ -1,6 +1,8 @@
 package com.bepotato.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
 
 public class Order implements Serializable{
 
@@ -11,7 +13,7 @@ public class Order implements Serializable{
 	private int sid;
 	private int oid;
 	private int uid;
-	private String time;
+	private Timestamp time;
 	private String location;
 	private int men;
 	private double price;
@@ -19,6 +21,7 @@ public class Order implements Serializable{
 	private double discount;
 	private int pay;
 	private String remark;
+	
 	public int getSid() {
 		return sid;
 	}
@@ -37,10 +40,11 @@ public class Order implements Serializable{
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
-	public String getTime() {
+	
+	public Timestamp getTime() {
 		return time;
 	}
-	public void setTime(String time) {
+	public void setTime(Timestamp time) {
 		this.time = time;
 	}
 	public String getLocation() {
