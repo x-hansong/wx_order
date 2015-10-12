@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bepotato.common.Data;
 import com.bepotato.model.Service;
+import com.bepotato.model.Shop;
+import com.bepotato.model.ShopImpl;
 
 public class AdminLogin extends HttpServlet {
 
@@ -24,7 +26,6 @@ public class AdminLogin extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
-	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -40,7 +41,6 @@ public class AdminLogin extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -57,7 +57,6 @@ public class AdminLogin extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -72,8 +71,12 @@ public class AdminLogin extends HttpServlet {
 			// û�е�¼�����ᱣ�������ͣ���Ҫ���µ�¼
 			List list = new ArrayList();
 			list=service.getAllType();
+			ShopImpl shopImpl=new ShopImpl();
+			/* change */
+			Shop shop=shopImpl.findById(1);
 			request.getSession().setAttribute(Data.TYPES, list);
-			response.sendRedirect("../adminIndex.jsp");
+			request.getSession().setAttribute(Data.SHOPS, shop);
+			response.sendRedirect("../design.jsp");
 		}else{
 			response.sendRedirect("../loginFalse.jsp");
 		}
@@ -84,7 +87,6 @@ public class AdminLogin extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
-	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

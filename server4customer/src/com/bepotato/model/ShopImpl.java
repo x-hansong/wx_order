@@ -1,6 +1,7 @@
 package com.bepotato.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.DbUtils;
@@ -40,10 +41,27 @@ public class ShopImpl implements ShopDao{
 	@Override
 	public boolean addShop(Shop shop) {
 		// TODO Auto-generated method stub
-		if(shop!=null)
+		if(shop!=null){
+			String sql="UPDATE `wx_db`.`shops` SET `name` = ? ,`phone` = ? ,`location` = ? ,`remark` = ? WHERE `sid` = ?";
+			PreparedStatement pStatement=null;
+			try{
+				pStatement=connection.prepareStatement(sql);
+				pStatement.execute("set Names utf8");
+				pStatement.setString(1, shop.getName());
+				pStatement.setString(2, shop.getPhone());
+				pStatement.setString(3, shop.getLocation());
+				pStatement.setString(4, shop.getRemark());
+				pStatement.setInt(5, shop.getSid());
+				pStatement.executeUpdate();
+				System.out.println(sql);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 			return true;
+		}
 		else
-		return false;
+			return false;
 	}
 
 	@Override
