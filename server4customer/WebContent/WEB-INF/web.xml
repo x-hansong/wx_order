@@ -112,21 +112,13 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>EditProductById</servlet-name>
-    <servlet-class>com.bepotato.action.EditProductById</servlet-class>
+    <servlet-name>SearchProduct</servlet-name>
+    <servlet-class>com.bepotato.action.SearchProduct</servlet-class>
   </servlet>
   <servlet>
-  <servlet-name>EditShop</servlet-name>
-  <servlet-class>com.bepotato.action.EditShop</servlet-class>
+    <servlet-name>EditShop</servlet-name>
+    <servlet-class>com.bepotato.action.EditShop</servlet-class>
   </servlet>
-  
-  
-  
-  
-  
-  
-  
- 
   <servlet-mapping>
     <servlet-name>Regedit</servlet-name>
     <url-pattern>/servlet/Regedit</url-pattern>
@@ -192,8 +184,8 @@
     <url-pattern>/servlet/Login</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>EditProductById</servlet-name>
-    <url-pattern>/servlet/EditProductById</url-pattern>
+    <servlet-name>SearchProduct</servlet-name>
+    <url-pattern>/servlet/SearchProduct</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ShowReserveOrders</servlet-name>
@@ -204,13 +196,9 @@
     <url-pattern>/servlet/AdminLogin</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  <servlet-name>EditShop</servlet-name>
-  <url-pattern>/servlet/EditShop</url-pattern>
+    <servlet-name>EditShop</servlet-name>
+    <url-pattern>/servlet/EditShop</url-pattern>
   </servlet-mapping>
-  
-  
-  
-  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
