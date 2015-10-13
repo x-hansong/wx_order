@@ -69,7 +69,7 @@
 							type=(Type)typeslist.get(i);%>
                         <li><a href="servlet/SearchProduct?typeid=<%=type.getTid()%>"><%=type.getName()%></a></li>
                         <%}%>
-                        <li><a href="servlet/EditType">编辑类别</a></li>
+                        <li><a href="servlet/SearchType">编辑类别</a></li>
  
                     </ul>
                 </li>

@@ -11,15 +11,14 @@
 	<script type="text/javascript">
 	</script>
 	<%List typeslist=null;
-	  List disheslist=null;
+	  List disheslist=null;  
+	  String currentTypeId=(String)session.getAttribute(Data.CURRENT_TYPE);
 	  typeslist=(List)session.getAttribute(Data.TYPES);
 	  disheslist=(List)session.getAttribute(Data.DISHES);
 	  if((typeslist!=null)&&(disheslist!=null)){
 		  int ntype=typeslist.size();
 		  int ndish=disheslist.size();
 		  Type type=null;Dish dish=null;
-		  dish=(Dish)disheslist.get(0);
-		  int currentTypeId=dish.getTid();
 		  %>
 </head>
 <body>
@@ -63,7 +62,7 @@
 							type=(Type)typeslist.get(i);%>
                         <li><a href="servlet/SearchProduct?typeid=<%=type.getTid()%>"><%=type.getName()%></a></li>
                         <%}%>
-                        <li><a href="servlet/EditType">编辑类别</a></li>
+                        <li><a href="servlet/SearchType">编辑类别</a></li>
  
                     </ul>
                 </li>
@@ -257,8 +256,8 @@
                 </form>
                 <!-- divfomr end -->
             </div>
-           <%}
-	  }
+           <%} /* for loop end */
+	  } /* if end */
 	  else{
 		  response.sendRedirect("login.jsp");
 	  }%>

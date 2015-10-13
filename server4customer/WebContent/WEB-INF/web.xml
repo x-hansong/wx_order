@@ -46,8 +46,8 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DeleteType</servlet-name>
-    <servlet-class>com.bepotato.action.DeleteType</servlet-class>
+    <servlet-name>DelType</servlet-name>
+    <servlet-class>com.bepotato.action.DelType</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -119,6 +119,10 @@
     <servlet-name>EditShop</servlet-name>
     <servlet-class>com.bepotato.action.EditShop</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SearchType</servlet-name>
+    <servlet-class>com.bepotato.action.SearchType</servlet-class>
+  </servlet>    
   <servlet-mapping>
     <servlet-name>Regedit</servlet-name>
     <url-pattern>/servlet/Regedit</url-pattern>
@@ -148,8 +152,8 @@
     <url-pattern>/servlet/EditType</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>DeleteType</servlet-name>
-    <url-pattern>/servlet/DeleteType</url-pattern>
+    <servlet-name>DelType</servlet-name>
+    <url-pattern>/servlet/DelType</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AddType</servlet-name>
@@ -186,6 +190,10 @@
   <servlet-mapping>
     <servlet-name>SearchProduct</servlet-name>
     <url-pattern>/servlet/SearchProduct</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  <servlet-name>SearchType</servlet-name>
+  <url-pattern>/servlet/SearchType</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ShowReserveOrders</servlet-name>

@@ -1,6 +1,7 @@
 package com.bepotato.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import com.bepotato.util.DBHelper;
 public class TypeImpl implements TypeDao{
 	private QueryRunner runner;
 	private Connection connection;
+	private String sql;
+	private PreparedStatement preparedStatement;
 	public TypeImpl(){
 		// TODO Auto-generated constructor stub
 		runner = new QueryRunner();
@@ -25,7 +28,7 @@ public class TypeImpl implements TypeDao{
 	@Override
 	public Type findById(int tid) {
 		// TODO Auto-generated method stub
-		String sql = "select * from types where tid = ?";
+		sql = "select * from types where tid = ?";
 		ResultSetHandler<Type> rsHandler = new BeanHandler<Type>(Type.class);
 		Type type  = null;
 		try {
@@ -46,6 +49,16 @@ public class TypeImpl implements TypeDao{
 	@Override
 	public boolean delType(int tid) {
 		// TODO Auto-generated method stub
+		sql="DELETE FROM `types` WHERE `tid` = ? ";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, tid);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 

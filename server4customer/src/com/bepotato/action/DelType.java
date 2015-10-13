@@ -1,7 +1,7 @@
 package com.bepotato.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bepotato.common.Data;
 import com.bepotato.model.Service;
+import com.bepotato.model.ShopImpl;
+import com.bepotato.model.Type;
+import com.bepotato.model.TypeImpl;
 
-public class SearchProduct extends HttpServlet {
+public class DelType extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public SearchProduct() {
+	public DelType() {
 		super();
 	}
 
@@ -58,13 +61,19 @@ public class SearchProduct extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Service services=new Service();
 		String typeid=request.getParameter("typeid");
-		List list=services.getProducetById(typeid);
-
-		request.getSession().setAttribute(Data.DISHES, list);
-		request.getSession().setAttribute(Data.CURRENT_TYPE, typeid);
-		response.sendRedirect("../food.jsp");
+		System.out.println(typeid);
+		TypeImpl typeImpl=new TypeImpl();
+		if(!typeImpl.delType(Integer.valueOf(typeid)))
+			System.out.println("delete type fail");
+		
+		List list = new ArrayList();
+		Service service=new Service();
+		list=service.getAllType();
+		
+		request.getSession().setAttribute(Data.TYPES, list);
+		response.sendRedirect("../edittype.jsp");
+	
 	}
 
 	/**
