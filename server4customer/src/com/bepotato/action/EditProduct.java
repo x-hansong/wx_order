@@ -79,9 +79,6 @@ public class EditProduct extends HttpServlet {
 		if(!dishImpl.modDish(dish)){
 			System.out.println("modify fail");
 		}
-		List list=services.getAllProduct();
-
-		request.getSession().setAttribute(Data.DISHES, list);
 		response.sendRedirect("SearchProduct?typeid="+typeid);
 	}
 

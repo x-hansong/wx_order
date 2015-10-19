@@ -121,13 +121,13 @@
 					<span style="display:inline-block;margin-right:0;width:50px;height:40px;text-align:center;line-height:40px;cursor:default" id="third">
 					<i class="icon-font" onClick="deleteorder(<%=i%>)">&#xe024;</i>
 					</span>
-                    <form id="acceptorderfrom<%=i%>" action="servlet/AcceptOrder" method="post">
+                    <form id="acceptorderfrom<%=i%>" action="servlet/CompleteOrder" method="post">
                     <input type="hidden" name="orderid" value="<%=order.getOid()%>"></input>
-                     <input type="hidden" name="state" value="<%=Data.NEW%>"></input>
+                     <input type="hidden" name="state" value="<%=Data.DOING%>"></input>
                     </form>
                     <form id="deleteorderfrom<%=i%>" action="servlet/DeleteOrder" method="post">
                     <input type="hidden" name="orderid" value="<%=order.getOid()%>"></input>
-                     <input type="hidden" name="state" value="<%=Data.NEW%>"></input>
+                     <input type="hidden" name="state" value="<%=Data.DOING%>"></input>
                     </form>
                 </div>
                 <div style="position:absolute;float:left;height:40px;line-height:40px;width:80px;text-align:center">
@@ -166,7 +166,7 @@
                           <form action="servlet/DeleteDishFromOrder" method="post" id="deletedishform<%=i%><%=j%>">
                           <input type="hidden" value="<%=orderid%>" name="orderid"></input>
                           <input type="hidden" value="<%=item.getIid()%>" name="dishid"></input>
-                   		  <input type="hidden" name="state" value="<%=Data.NEW%>"></input>
+                   		  <input type="hidden" name="state" value="<%=Data.DOING%>"></input>
                           </form>
 						<%
 						/* } */

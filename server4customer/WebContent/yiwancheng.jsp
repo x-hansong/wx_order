@@ -115,20 +115,6 @@
         	<div style="width:800px;" id="theorder<%=i%>">
             	<div id="ordertop<%=i%>" style="width:500px;height:40px;background:#9FF;">
 					<span style="display:inline-block;background:#9FF;width:160px;height:40px;text-align:center;line-height:40px" id="first"><%=order.getLocation()%></span>
-					<span style="display:inline-block;margin-left:220px;width:50px;height:40px;text-align:center;line-height:40px;cursor:default" id="second">
-					<i class="icon-font" onClick="sureorder(<%=i%>)">&#xe025;</i>
-					</span>
-					<span style="display:inline-block;margin-right:0;width:50px;height:40px;text-align:center;line-height:40px;cursor:default" id="third">
-					<i class="icon-font" onClick="deleteorder(<%=i%>)">&#xe024;</i>
-					</span>
-                    <form id="acceptorderfrom<%=i%>" action="servlet/AcceptOrder" method="post">
-                    <input type="hidden" name="orderid" value="<%=order.getOid()%>"></input>
-                     <input type="hidden" name="state" value="<%=Data.NEW%>"></input>
-                    </form>
-                    <form id="deleteorderfrom<%=i%>" action="servlet/DeleteOrder" method="post">
-                    <input type="hidden" name="orderid" value="<%=order.getOid()%>"></input>
-                     <input type="hidden" name="state" value="<%=Data.NEW%>"></input>
-                    </form>
                 </div>
                 <div style="position:absolute;float:left;height:40px;line-height:40px;width:80px;text-align:center">
                     <span><%=order.getTime()%></span>
@@ -161,13 +147,7 @@
 						  <li id="forth">
 							<span style="width:250px;display:inline-block;"><%=dish.getName()%></span>
 							<span style="width:50px;display:inline-block;">*<%=item.getNum()%></span>
-							<span style="cursor:default;display:inline-block;" id="fifth"><i class="icon-font" onClick="deletedish(<%=i%>,<%=j%>)">&#xe024;</i></span>
 						  </li>   
-                          <form action="servlet/DeleteDishFromOrder" method="post" id="deletedishform<%=i%><%=j%>">
-                          <input type="hidden" value="<%=orderid%>" name="orderid"></input>
-                          <input type="hidden" value="<%=item.getIid()%>" name="dishid"></input>
-                   		  <input type="hidden" name="state" value="<%=Data.NEW%>"></input>
-                          </form>
 						<%
 						/* } */
 						} /* for loop end */
@@ -206,7 +186,7 @@ function sureorder(i){
 function deleteorder(i){
 	$("#deleteorderfrom"+i).submit();
 }
-function deletedish(i,j){
+function deletedish(i){
 	$("#deletedishform"+i+""+j).submit();
 }
 </script>

@@ -11,7 +11,14 @@ public class OrderItem implements Serializable{
 	private int sid;
 	private int oid;
 	private int did;
+	private int iid;
 	private int num;
+	public int getIid(){
+		return iid;
+	}
+	public void setIid(int iid){
+		this.iid=iid;
+	}
 	public int getSid() {
 		return sid;
 	}

@@ -78,7 +78,7 @@ public class AdminLogin extends HttpServlet {
 			request.getSession().setAttribute(Data.SHOPS, shop);
 			response.sendRedirect("../design.jsp");
 		}else{
-			response.sendRedirect("../loginFalse.jsp");
+			response.sendRedirect("../login.jsp");
 		}
 	}
 

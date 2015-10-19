@@ -84,9 +84,9 @@
                 <li>
                     <a href="#"><i class="icon-font">&#xe008;</i>订单管理</a>
                     <ul class="sub-menu">
-                        <li><a href="servlet/ShowAcceptOrders?state=0">待接单</a></li>
-                        <li><a href="servlet/ShowAcceptOrders?state=1">未完成</a></li>
-                        <li><a href="servlet/ShowAcceptOrders?state=2">已完成</a></li>
+                        <li><a href="servlet/ShowNewOrder">待接单</a></li>
+                        <li><a href="servlet/ShowDoingOrder">未完成</a></li>
+                        <li><a href="servlet/ShowDoneOrder">已完成</a></li>
  
                     </ul>
                 </li>
@@ -191,11 +191,11 @@
 					$("#shopAddress").hide();
                     $("#addAddress").show();
                     $("#sureAddAddress").bind("click",function(){
-					$("#updatafrom" ).submit();
+					    $("#updatafrom" ).submit();
                     });
-					$("#cancelAddAddress").bind("click",function(){
-                    $("#addAddress").hide();
-                    $("#shopAddress").show();
+				    $("#cancelAddAddress").bind("click",function(){
+                        $("#addAddress").hide();
+                        $("#shopAddress").show();
                     });
                 })
             });

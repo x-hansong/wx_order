@@ -2,7 +2,10 @@ package com.bepotato.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -15,11 +18,16 @@ import com.bepotato.util.DBHelper;
 public class OrderItemImpl implements OrderItemDao{
 	private QueryRunner runner;
 	private Connection connection;
+	/* private String sql = null; */
+	private PreparedStatement preparedStatement; 
 	public OrderItemImpl(){
 		// TODO Auto-generated constructor stub
 		runner = new QueryRunner();
 		connection = DBHelper.getConnection();
 	}
+	/**
+	 * @author xiaojin
+	 */
 	@Override
 	public OrderItem findById(int oid) {
 		// TODO Auto-generated method stub
@@ -71,6 +79,17 @@ public class OrderItemImpl implements OrderItemDao{
 	@Override
 	public boolean delOrderItem(OrderItem item) {
 		// TODO Auto-generated method stub
+		String sql="delete from orderitem where iid=? and oid=?";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, item.getDid());
+			preparedStatement.setInt(2, item.getOid());
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -86,5 +105,27 @@ public class OrderItemImpl implements OrderItemDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public List findByOrderId(int oid) {
+		// TODO Auto-generated method stub
+		List list=new ArrayList();
+		String sql="select did,num,iid from orderitem where oid = ?";
+		ResultSet rSet = null;
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, oid);
+			rSet=preparedStatement.executeQuery();
+			while(rSet.next()){
+				OrderItem orderItem=new OrderItem();
+				orderItem.setDid(rSet.getInt(1));
+				orderItem.setNum(rSet.getInt(2));
+				orderItem.setIid(rSet.getInt(3));
+				list.add(orderItem);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

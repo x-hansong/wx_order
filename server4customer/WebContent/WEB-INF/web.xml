@@ -76,8 +76,8 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ShowAcceptOrders</servlet-name>
-    <servlet-class>com.bepotato.action.ShowAcceptOrders</servlet-class>
+    <servlet-name>ShowNewOrder</servlet-name>
+    <servlet-class>com.bepotato.action.ShowNewOrder</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -100,8 +100,14 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ShowReserveOrders</servlet-name>
-    <servlet-class>com.bepotato.action.ShowReserveOrders</servlet-class>
+    <servlet-name>ShowDoingOrder</servlet-name>
+    <servlet-class>com.bepotato.action.ShowDoingOrder</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowDoneOrder</servlet-name>
+    <servlet-class>com.bepotato.action.ShowDoneOrder</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -122,7 +128,26 @@
   <servlet>
     <servlet-name>SearchType</servlet-name>
     <servlet-class>com.bepotato.action.SearchType</servlet-class>
-  </servlet>    
+  </servlet> 
+  <servlet>
+    <servlet-name>DeleteDishFromOrder</servlet-name>
+    <servlet-class>com.bepotato.action.DeleteDishFromOrder</servlet-class>
+  </servlet>   
+  <servlet>
+    <servlet-name>AcceptOrder</servlet-name>
+    <servlet-class>com.bepotato.action.AcceptOrder</servlet-class>
+  </servlet>   
+  <servlet>
+    <servlet-name>DeleteOrder</servlet-name>
+    <servlet-class>com.bepotato.action.DeleteOrder</servlet-class>
+  </servlet>   
+  <servlet>
+    <servlet-name>CompleteOrder</servlet-name>
+    <servlet-class>com.bepotato.action.CompleteOrder</servlet-class>
+  </servlet>   
+  
+  
+     
   <servlet-mapping>
     <servlet-name>Regedit</servlet-name>
     <url-pattern>/servlet/Regedit</url-pattern>
@@ -172,8 +197,8 @@
     <url-pattern>/servlet/DeleteProduct</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>ShowAcceptOrders</servlet-name>
-    <url-pattern>/servlet/ShowAcceptOrders</url-pattern>
+    <servlet-name>ShowNewOrder</servlet-name>
+    <url-pattern>/servlet/ShowNewOrder</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ShowLIuyan</servlet-name>
@@ -196,8 +221,12 @@
   <url-pattern>/servlet/SearchType</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>ShowReserveOrders</servlet-name>
-    <url-pattern>/servlet/ShowReserveOrders</url-pattern>
+    <servlet-name>ShowDoingOrder</servlet-name>
+    <url-pattern>/servlet/ShowDoingOrder</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowDoneOrder</servlet-name>
+    <url-pattern>/servlet/ShowDoneOrder</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AdminLogin</servlet-name>
@@ -207,6 +236,24 @@
     <servlet-name>EditShop</servlet-name>
     <url-pattern>/servlet/EditShop</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteDishFromOrder</servlet-name>
+    <url-pattern>/servlet/DeleteDishFromOrder</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+    <servlet-name>AcceptOrder</servlet-name>
+    <url-pattern>/servlet/AcceptOrder</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+    <servlet-name>DeleteOrder</servlet-name>
+    <url-pattern>/servlet/DeleteOrder</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+    <servlet-name>CompleteOrder</servlet-name>
+    <url-pattern>/servlet/CompleteOrder</url-pattern>
+  </servlet-mapping>   
+  
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

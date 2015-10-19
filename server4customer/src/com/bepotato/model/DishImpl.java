@@ -2,6 +2,7 @@ package com.bepotato.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,13 +29,30 @@ public class DishImpl implements DishDao{
 	@Override
 	public Dish findById(int did) {
 		// TODO Auto-generated method stub
-		sql = "select * from dishes where did = ?";
+		sql = "select name from dishes where did = ?";
+		/*
 		ResultSetHandler<Dish> rsHandler = new BeanHandler<Dish>(Dish.class);
 		Dish dish  = null;
 		try {
 			dish = runner.query(connection,sql, rsHandler,did);
 		} catch (Exception e) {
 			// TODO: handle exception	
+			e.printStackTrace();
+		}
+		*/
+		ResultSet rSet=null;
+		Dish dish=null;
+		try {
+			pStatement=connection.prepareStatement(sql);
+			pStatement.setInt(1, did);
+			rSet=pStatement.executeQuery();
+			dish = new Dish();
+			while(rSet.next()){
+				dish.setDid(did);
+				dish.setName(rSet.getString(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return dish;

@@ -113,12 +113,34 @@ public class OrderImpl implements OrderDao{
 	@Override
 	public boolean delOrder(int oid) {
 		// TODO Auto-generated method stub
+		String sql="DELETE FROM orders WHERE oid=?";
+		try {
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, oid);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean modOrder(Order order) {
 		// TODO Auto-generated method stub
+		PreparedStatement preparedStatement=null;
+		String sql="update orders set state=? where oid=?";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, order.getSid());
+			preparedStatement.setInt(2, order.getOid());
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 	public void closeConnection() {

@@ -8,4 +8,8 @@ public class Data {
 	public static final String ORDERS="ORDERS";
 	public static final String SHOPS="SHOPS";
 	public static final String CURRENT_TYPE = "CURRENT_TYPE";
+	public static final String ITEMS="ITEMS";
+	public static final String DONE = "2";
+	public static final String DOING = "1";
+	public static final String NEW = "0";
 }

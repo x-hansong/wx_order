@@ -15,11 +15,11 @@
                 <ul class="admin_items">
                     <li>
                         <label for="user">用户名：</label>
-                        <input type="text" name="username" value="admin" id="user" size="40" class="admin_input_style" />
+                        <input type="text" name="username" id="user" size="40" class="admin_input_style" />
                     </li>
                     <li>
                         <label for="pwd">密码：</label>
-                        <input type="password" name="password" value="admin" id="pwd" size="40" class="admin_input_style" />
+                        <input type="password" name="password" id="pwd" size="40" class="admin_input_style" />
                     </li>
                     <li>
                         <input type="submit" tabindex="3" value="提交" class="btn btn-primary" />

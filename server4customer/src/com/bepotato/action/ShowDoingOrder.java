@@ -1,13 +1,17 @@
 package com.bepotato.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ShowReserveOrders extends HttpServlet {
+import com.bepotato.common.Data;
+import com.bepotato.model.Service;
+
+public class ShowDoingOrder extends HttpServlet {
 	
 	public void init() throws ServletException{
 		super.init();
@@ -18,14 +22,23 @@ public class ShowReserveOrders extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
-		response.sendRedirect("../daijiedan.jsp");
+		String state=request.getParameter("state");
+		Service services=new Service();
+		List list=null;
+		list=services.getDoingOrders();
+		if (list==null)
+			System.out.println("orders null");
+		else 
+			System.out.println(list.size());
+		request.getSession().setAttribute(Data.ORDERS, list);	
+		response.sendRedirect("../weiwancheng.jsp");
 	}
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		this.doGet(request,response);
 	}
 	
-	public ShowReserveOrders(){
+	public ShowDoingOrder(){
 		super();
 	}
 

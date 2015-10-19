@@ -77,9 +77,9 @@
                 <li>
                     <a href="#"><i class="icon-font">&#xe008;</i>订单管理</a>
                     <ul class="sub-menu">
-                        <li><a href="servlet/ShowAcceptOrders?state=0">待接单</a></li>
-                        <li><a href="servlet/ShowAcceptOrders?state=1">未完成</a></li>
-                        <li><a href="servlet/ShowAcceptOrders?state=2">已完成</a></li>
+                        <li><a href="servlet/ShowNewOrder">待接单</a></li>
+                        <li><a href="servlet/ShowDoingOrder">未完成</a></li>
+                        <li><a href="servlet/ShowDoneOrder">已完成</a></li>
  
                     </ul>
                 </li>
@@ -163,8 +163,8 @@
                 <div style="text-align:center"><%=dish.getName()%></div>
                 <div style="text-align:center">￥<%=dish.getPrice()%></div>
                 <div style="height:16px;">
-                <div class="editDishButton"><i class="icon-font" style="display:block;float:left;text-align:center;width:70px;" onclick="ShowEditWindow(<%=i%>)">&#xe002;</i></div>
-                <i class="icon-font" style="display:block;float:left;text-align:center;width:70px;" onclick="ShowDelWindow(<%=i%>)">&#xe019;</i>
+                <div class="editDishButton"><i class="icon-font" style="display:block;float:left;text-align:center;width:70px;" onClick="ShowEditWindow(<%=i%>)">&#xe002;</i></div>
+                <i class="icon-font" style="display:block;float:left;text-align:center;width:70px;" onClick="ShowDelWindow(<%=i%>)">&#xe019;</i>
                 </div>
                 <hr>
                 </div>

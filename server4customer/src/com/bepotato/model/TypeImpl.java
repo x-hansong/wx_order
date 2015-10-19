@@ -65,6 +65,16 @@ public class TypeImpl implements TypeDao{
 	@Override
 	public boolean modType(Type type) {
 		// TODO Auto-generated method stub
+		sql="UPDATE TYPES SET NAME=? WHERE tid=?";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(2, type.getTid());
+			preparedStatement.setString(1, type.getName());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 	public void closeConnection() {

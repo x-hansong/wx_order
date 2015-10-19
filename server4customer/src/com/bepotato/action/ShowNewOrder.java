@@ -10,14 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bepotato.common.Data;
+import com.bepotato.model.Dish;
+import com.bepotato.model.DishImpl;
+import com.bepotato.model.OrderItemImpl;
 import com.bepotato.model.Service;
 
-public class ShowAcceptOrders extends HttpServlet {
+public class ShowNewOrder extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public ShowAcceptOrders() {
+	public ShowNewOrder() {
 		super();
 	}
 
@@ -61,19 +64,9 @@ public class ShowAcceptOrders extends HttpServlet {
 		String state=request.getParameter("state");
 		Service services=new Service();
 		List list=null;
-		if(state.equals("0")){
-			list=services.getNewOrders();
-		}
-		else if(state.equals("1")){
-			list=services.getDoingOrders();
-		}
-		else if(state.equals("2")){
-			list=services.getDoneOrders();
-		}
-		else if(state.equals("3"))
-			list=services.getAllOrders();
+		list=services.getNewOrders();
 		if (list==null)
-			System.out.println("null");
+			System.out.println("orders null");
 		else 
 			System.out.println(list.size());
 		request.getSession().setAttribute(Data.ORDERS, list);
