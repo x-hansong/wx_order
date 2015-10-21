@@ -1,6 +1,7 @@
 package com.bepotato.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,7 +24,6 @@ public class ShowAcceptOrders extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
-	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -39,7 +39,6 @@ public class ShowAcceptOrders extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -56,27 +55,29 @@ public class ShowAcceptOrders extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		String state=request.getParameter("state");
 		Service services=new Service();
 		List list=null;
-		if(state.equals("1")){
+		if(state.equals("0")){
+			list=services.getNewOrders();
+		}
+		else if(state.equals("1")){
 			list=services.getDoingOrders();
 		}
 		else if(state.equals("2")){
 			list=services.getDoneOrders();
 		}
-		if(state.equals("3"))
+		else if(state.equals("3"))
 			list=services.getAllOrders();
 		if (list==null)
 			System.out.println("null");
 		else 
 			System.out.println(list.size());
 		request.getSession().setAttribute(Data.ORDERS, list);
-		response.sendRedirect("../showAcceptedOrders.jsp");
+		response.sendRedirect("../daijiedan.jsp");
 	}
 
 	/**
@@ -84,7 +85,6 @@ public class ShowAcceptOrders extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
-	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

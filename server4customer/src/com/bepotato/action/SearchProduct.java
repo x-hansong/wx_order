@@ -1,7 +1,7 @@
 package com.bepotato.action;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,15 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bepotato.common.Data;
 import com.bepotato.model.Service;
-import com.bepotato.model.Shop;
-import com.bepotato.model.ShopImpl;
 
-public class AdminLogin extends HttpServlet {
+public class SearchProduct extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public AdminLogin() {
+	public SearchProduct() {
 		super();
 	}
 
@@ -60,26 +58,13 @@ public class AdminLogin extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		
-		
-		Service service = new Service();
-		boolean b=service.login(username, password);
-		
-		if(b){
-			// û�е�¼�����ᱣ�������ͣ���Ҫ���µ�¼
-			List list = new ArrayList();
-			list=service.getAllType();
-			ShopImpl shopImpl=new ShopImpl();
-			/* change */
-			Shop shop=shopImpl.findById(1);
-			request.getSession().setAttribute(Data.TYPES, list);
-			request.getSession().setAttribute(Data.SHOPS, shop);
-			response.sendRedirect("../design.jsp");
-		}else{
-			response.sendRedirect("../loginFalse.jsp");
-		}
+		Service services=new Service();
+		String typeid=request.getParameter("typeid");
+		List list=services.getProducetById(typeid);
+
+		request.getSession().setAttribute(Data.DISHES, list);
+		request.getSession().setAttribute(Data.CURRENT_TYPE, typeid);
+		response.sendRedirect("../food.jsp");
 	}
 
 	/**

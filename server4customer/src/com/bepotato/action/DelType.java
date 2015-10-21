@@ -11,15 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bepotato.common.Data;
 import com.bepotato.model.Service;
-import com.bepotato.model.Shop;
 import com.bepotato.model.ShopImpl;
+import com.bepotato.model.Type;
+import com.bepotato.model.TypeImpl;
 
-public class AdminLogin extends HttpServlet {
+public class DelType extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public AdminLogin() {
+	public DelType() {
 		super();
 	}
 
@@ -60,26 +61,19 @@ public class AdminLogin extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
+		String typeid=request.getParameter("typeid");
+		System.out.println(typeid);
+		TypeImpl typeImpl=new TypeImpl();
+		if(!typeImpl.delType(Integer.valueOf(typeid)))
+			System.out.println("delete type fail");
 		
+		List list = new ArrayList();
+		Service service=new Service();
+		list=service.getAllType();
 		
-		Service service = new Service();
-		boolean b=service.login(username, password);
-		
-		if(b){
-			// û�е�¼�����ᱣ�������ͣ���Ҫ���µ�¼
-			List list = new ArrayList();
-			list=service.getAllType();
-			ShopImpl shopImpl=new ShopImpl();
-			/* change */
-			Shop shop=shopImpl.findById(1);
-			request.getSession().setAttribute(Data.TYPES, list);
-			request.getSession().setAttribute(Data.SHOPS, shop);
-			response.sendRedirect("../design.jsp");
-		}else{
-			response.sendRedirect("../loginFalse.jsp");
-		}
+		request.getSession().setAttribute(Data.TYPES, list);
+		response.sendRedirect("../edittype.jsp");
+	
 	}
 
 	/**

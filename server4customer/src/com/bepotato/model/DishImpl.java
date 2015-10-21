@@ -1,6 +1,7 @@
 package com.bepotato.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.tomcat.util.http.fileupload.ParameterParser;
 
 import com.bepotato.dao.DishDao;
 import com.bepotato.util.DBHelper;
@@ -16,6 +18,8 @@ import com.bepotato.util.DBHelper;
 public class DishImpl implements DishDao{
 	private QueryRunner runner;
 	private Connection connection;
+	private String sql=null;
+	private PreparedStatement pStatement=null;
 	public DishImpl(){
 		// TODO Auto-generated constructor stub
 		runner = new QueryRunner();
@@ -24,7 +28,7 @@ public class DishImpl implements DishDao{
 	@Override
 	public Dish findById(int did) {
 		// TODO Auto-generated method stub
-		String sql = "select * from dishes where did = ?";
+		sql = "select * from dishes where did = ?";
 		ResultSetHandler<Dish> rsHandler = new BeanHandler<Dish>(Dish.class);
 		Dish dish  = null;
 		try {
@@ -45,12 +49,37 @@ public class DishImpl implements DishDao{
 	@Override
 	public boolean delDish(int did) {
 		// TODO Auto-generated method stub
+		sql="DELETE FROM `dishes` WHERE `did` = ?";
+		try {
+			pStatement=connection.prepareStatement(sql);
+			pStatement.setInt(1, did);
+			pStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean modDish(Dish dish) {
 		// TODO Auto-generated method stub
+		if(dish!=null){
+			sql="UPDATE `dishes` SET `name` = ? ,`price` = ? ,`img` = ? WHERE `did` = ?";
+			try {
+				pStatement=connection.prepareStatement(sql);
+				pStatement.setString(1,dish.getName());
+				pStatement.setDouble(2, dish.getPrice());
+				pStatement.setString(3, dish.getImg());
+				pStatement.setInt(4, Integer.valueOf(dish.getDid()));
+				pStatement.executeUpdate();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 	public void closeConnection() {
@@ -64,7 +93,7 @@ public class DishImpl implements DishDao{
 	@Override
 	public List<Dish> findByType(int tid) {
 		// TODO Auto-generated method stub
-		String sql = "select * from dishes where tid = ?";
+		sql = "select * from dishes where tid = ?";
 		ResultSetHandler<List<Dish>> rSetHandler = new BeanListHandler<Dish>(Dish.class);
 		List<Dish> dishs = null;
 		try {
@@ -78,7 +107,7 @@ public class DishImpl implements DishDao{
 	@Override
 	public Dish findByName(String name) {
 		// TODO Auto-generated method stub
-		String sql = "select * from dishes where name = ?";
+		sql = "select * from dishes where name = ?";
 		ResultSetHandler<Dish> rsHandler = new BeanHandler<Dish>(Dish.class);
 		Dish dish  = null;
 		try {

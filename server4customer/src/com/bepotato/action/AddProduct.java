@@ -1,6 +1,11 @@
 package com.bepotato.action;
 
+import java.awt.ItemSelectable;
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +25,6 @@ public class AddProduct extends HttpServlet {
 	/**
 	 * Destruction of the servlet. <br>
 	 */
-	@Override
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
@@ -36,7 +40,6 @@ public class AddProduct extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -53,24 +56,20 @@ public class AddProduct extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String pname=request.getParameter("pname");
-			pname=new String(pname.getBytes("ISO8859-1"),"GBK");
-		String ptype=request.getParameter("ptype");
-			ptype=new String(ptype.getBytes("ISO8859-1"),"GBK");
-		String pinfo=request.getParameter("pinfo");
-			pinfo=new String(pinfo.getBytes("ISO8859-1"),"GBK");
+		request.setCharacterEncoding("utf-8");
+		String pname=request.getParameter("name");
+		String ptype=request.getParameter("price");
+		String pinfo=request.getParameter("picture");
 		String tid=request.getParameter("tid");
-		tid=new String(tid.getBytes("ISO8859-1"), "GBK");
 		Service service=new Service();
 		int flag=service.addProduct(pname, ptype, pinfo,tid);
 		
 		if(flag==1){
 			System.out.println("�����Ʒ�ɹ���");
-			response.sendRedirect("../Success.jsp");
+			response.sendRedirect("SearchProduct?typeid="+tid);
 		}else{
 			System.out.println("�����Ʒʧ�ܣ�");
 			response.sendRedirect("../False.jsp");
@@ -82,7 +81,6 @@ public class AddProduct extends HttpServlet {
 	 *
 	 * @throws ServletException if an error occurs
 	 */
-	@Override
 	public void init() throws ServletException {
 		// Put your code here
 	}

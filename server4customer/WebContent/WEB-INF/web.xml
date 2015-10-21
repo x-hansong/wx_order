@@ -37,7 +37,7 @@
     <servlet-name>EditAdminDo</servlet-name>
     <servlet-class>com.bepotato.action.EditAdminDo</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>EditType</servlet-name>
@@ -46,10 +46,10 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DeleteType</servlet-name>
-    <servlet-class>com.bepotato.action.DeleteType</servlet-class>
+    <servlet-name>DelType</servlet-name>
+    <servlet-class>com.bepotato.action.DelType</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>AddType</servlet-name>
@@ -97,21 +97,32 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>com.bepotato.action.Login</servlet-class>
   </servlet>
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowReserveOrders</servlet-name>
+    <servlet-class>com.bepotato.action.ShowReserveOrders</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminLogin</servlet-name>
+    <servlet-class>com.bepotato.action.AdminLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SearchProduct</servlet-name>
+    <servlet-class>com.bepotato.action.SearchProduct</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditShop</servlet-name>
+    <servlet-class>com.bepotato.action.EditShop</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SearchType</servlet-name>
+    <servlet-class>com.bepotato.action.SearchType</servlet-class>
+  </servlet>    
   <servlet-mapping>
     <servlet-name>Regedit</servlet-name>
     <url-pattern>/servlet/Regedit</url-pattern>
@@ -135,16 +146,16 @@
   <servlet-mapping>
     <servlet-name>EditAdminDo</servlet-name>
     <url-pattern>/servlet/EditAdminDo</url-pattern>
-  </servlet-mapping>	
-   <servlet-mapping>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>EditType</servlet-name>
     <url-pattern>/servlet/EditType</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>DeleteType</servlet-name>
-    <url-pattern>/servlet/DeleteType</url-pattern>
+    <servlet-name>DelType</servlet-name>
+    <url-pattern>/servlet/DelType</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>AddType</servlet-name>
     <url-pattern>/servlet/AddType</url-pattern>
   </servlet-mapping>
@@ -176,36 +187,25 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/servlet/Login</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>EditProductById</servlet-name>
-    <servlet-class>com.bepotato.action.EditProductById</servlet-class>
-  </servlet>
   <servlet-mapping>
-    <servlet-name>EditProductById</servlet-name>
-    <url-pattern>/servlet/EditProductById</url-pattern>
+    <servlet-name>SearchProduct</servlet-name>
+    <url-pattern>/servlet/SearchProduct</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ShowReserveOrders</servlet-name>
-    <servlet-class>com.bepotato.action.ShowReserveOrders</servlet-class>
-  </servlet>
+  <servlet-mapping>
+  <servlet-name>SearchType</servlet-name>
+  <url-pattern>/servlet/SearchType</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ShowReserveOrders</servlet-name>
     <url-pattern>/servlet/ShowReserveOrders</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AdminLogin</servlet-name>
-    <servlet-class>com.bepotato.action.AdminLogin</servlet-class>
-  </servlet>
   <servlet-mapping>
     <servlet-name>AdminLogin</servlet-name>
     <url-pattern>/servlet/AdminLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditShop</servlet-name>
+    <url-pattern>/servlet/EditShop</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

@@ -58,17 +58,16 @@ public class AddType extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("GBK");
+		request.setCharacterEncoding("utf-8");
 		String typename=request.getParameter("typename");
 		Service service=new Service();
 		int flag=service.addType(typename);
-		
 		if(flag==1){
-			System.out.println("�����ӳɹ���");
-			response.sendRedirect("../Success.jsp");
+			System.out.println("2333");
+			response.sendRedirect("SearchType");
 		}else{
-			System.out.println("������ʧ���ˣ�");
-			response.sendRedirect("../False.jsp");
+			System.out.println("5555");
+			response.sendRedirect("SearchType");
 		}
 		
 	}
