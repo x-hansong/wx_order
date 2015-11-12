@@ -21,6 +21,8 @@ import com.bepotato.menu.Menu;
 import com.bepotato.menu.ViewButton;
 import com.bepotato.po.AccessToken;
 import com.bepotato.po.AccessTokenDao;
+import com.bepotato.po.Scene;
+import com.bepotato.po.Ticket;
 
 import net.sf.json.JSONObject;
 
@@ -32,7 +34,10 @@ public class WeixinUtil {
 	public static String CREATE_MENU_URL ="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 	public static String AUTHORIZE_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=1#wechat_redirect";
 	public static String DELETE_MENU_URL ="https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
-	public static final String MY_URL ="http://bepotato.tunnel.mobi/wx_order";
+	public static String TICKET_URL="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=TOKEN";
+	public static String QRCODE_URL="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET";
+	public static final String MY_URL ="http://119.29.26.47";
+	
 	/**
 	 * get����
 	 * @param url
@@ -96,7 +101,7 @@ public class WeixinUtil {
 	}
 	
 	/**
-	 * �˵���װ
+	 **初始化菜单װ
 	 * @return
 	 */
 	public static Menu initMenu(){
@@ -110,6 +115,11 @@ public class WeixinUtil {
 		return menu;
 	}
 	
+	/**
+	 * 创建菜单
+	 * @param menu
+	 * @return
+	 */
 	public static int createMenu(String menu){
 		int result =0;
 		AccessTokenDao atDao = new AccessTokenDao();
@@ -144,5 +154,33 @@ public class WeixinUtil {
 		}
 		
 		return urltemp;
+	}
+	
+	public static JSONObject getTicketJsonObj(int scene_id,int expire_seconds){
+		Ticket t = new Ticket();
+		t.setAction_name(Ticket.QR_SCENE);
+		Scene scene = new Scene();
+		scene.setScene_id(scene_id);
+		t.setAction_info(scene);
+		t.setExpire_seconds(expire_seconds);
+		String ticket = JSONObject.fromObject(t).toString();
+		System.out.println(ticket);
+		AccessTokenDao atDao = new AccessTokenDao();
+		atDao.checkToken();
+		String token = atDao.getAccessTokenBySQL().getToken();
+		String url = TICKET_URL.replace("TOKEN", token);
+		return doPostStr(url, ticket);
+	}
+	
+	public static String getQrcodeUrl(JSONObject ticketObj){
+		String ticketString = ticketObj.getString("ticket");
+		String url =null;
+		try {
+			url = QRCODE_URL.replace("TICKET", URLEncoder.encode(ticketString,"utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
 	}
 }

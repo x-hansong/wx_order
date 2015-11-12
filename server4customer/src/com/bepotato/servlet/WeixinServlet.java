@@ -71,11 +71,11 @@ public class WeixinServlet extends HttpServlet {
 		    String message = null;
 			if (MessageUtil.MESSAGE_TEXT.equals(msgType)) {
 				if ("1".equals(content)) {
-
+					
 				} else if ("2".equals(content)) {
 					
 				} else if ("?".equals(content) || "？".equals(content)) {
-
+					message = MessageUtil.initTextMessage(toUserName, fromUserName, MessageUtil.menuText());
 				}
 			} else if (MessageUtil.MESSAGE_EVENT.equals(msgType)) {
 				    String eventType = map.get("Event");

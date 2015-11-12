@@ -1,3 +1,6 @@
+<%@page import="com.bepotato.util.WeixinUtil"%>
+<%@page import="com.bepotato.util.SDKConfigUtil"%>
+<%@page import="com.bepotato.po.SDKConfig"%>
 <%@page import="com.bepotato.model.UserImpl"%>
 <%@page import="com.bepotato.model.User"%>
 <%@page import="com.bepotato.util.UserUtil"%>
@@ -20,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 	<link type="text/css" rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/swiper.3.1.2.min.css" />
     
@@ -87,21 +91,21 @@ function toastFunction(messageString){
    
    <%
    String code = request.getParameter("code");
+   String state= request.getParameter("state");
    //判断是否第一次进入
    if(code != null){
+   //session属性名称不能用online，会产生冲突
+   String online ="1";
+   session.setAttribute("alreadyOn",online);
    JSONObject jsonObject = UserUtil.getAuthJsonObj(code);
    if(jsonObject !=null){
    String openid = jsonObject.getString("openid");
-   //int subscribe = UserUtil.getSubscribeCode(OpenId);
-   //if(subscribe == 1){
    User userTemp = UserUtil.getUserByOpenId(openid);
    //更新用户的信息，前提是用户已经关注了公众号
    UserImpl userImpl = new UserImpl();
    userImpl.refreshUser(userTemp, openid);
    User user = userImpl.findByOpenId(openid);
    session.setAttribute("user", user);
-   //}else{
-   //}
    }
    }
     %>
@@ -179,7 +183,7 @@ var call = "已经通知<br/>请稍等";
 </div>
 <!-- 地址指引 -->
 <div class="message-2">
-	<div class="address"><p>地址:&nbsp;&nbsp;大学城北岗村233号</p><a href="#"><img  alt="地址指引" src="images/location.png" /></a></div>
+	<div class="address"><p>地址:&nbsp;&nbsp;大学城北岗村233号</p><img onclick="openlocation()" alt="地址指引" src="images/location.png" /></div>
 </div>
 <!-- 底部菜单 -->
 <div class="body_footer">
@@ -222,4 +226,62 @@ var swiper2 = new Swiper('.swiper-container-2', {
 </script>
 
 </body>
+<%
+SDKConfig sdkConfig = null;
+StringBuffer sb = new StringBuffer();
+sb.append("http://bepotato.tunnel.mobi/wx_order/pages/home.jsp");
+if(code != null){
+sb.append("?code=");
+sb.append(code);
+sb.append("&state=");
+sb.append(state);
+}else if(bookingseat !=null){
+sb.append("?bookingseat=");
+sb.append(bookingseat);
+}else if(ordersure !=null){
+sb.append("?ordersure=");
+sb.append(ordersure);
+}
+
+String url = sb.toString();
+sdkConfig = SDKConfigUtil.getSDKConfig(url);
+ %>
+
+ <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  /*
+   * 注意：
+   * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+   * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+   * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+   *
+   * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+   * 邮箱地址：weixin-open@qq.com
+   * 邮件主题：【微信JS-SDK反馈】具体问题
+   * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+   */
+  wx.config({
+      debug: false,
+      appId: '<%=WeixinUtil.APPID%>',
+      timestamp: <%=sdkConfig.getTimestamp()%>,
+      nonceStr: '<%=sdkConfig.getNonceStr()%>',
+      signature: '<%=sdkConfig.getSignature()%>',
+      jsApiList: [
+        'openLocation',
+      ]
+  });
+  
+function openlocation(){
+wx.openLocation({
+      latitude: 23.099994,
+      longitude: 113.324520,
+      name: 'TIT 创意园',
+      address: '广州市海珠区新港中路 397 号',
+      scale: 14,
+      infoUrl: 'http://weixin.qq.com'
+    });
+    }
+</script>
+<script src="js/zepto.min.js"></script>
+
 </html>

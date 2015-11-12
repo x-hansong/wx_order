@@ -10,10 +10,10 @@ public class CheckUtil {
 	public static boolean checkSignature(String signature, String timestamp,
 			String nonce) {
 		String[] arr = new String[] { token, timestamp, nonce };
-		// ����
+
 		Arrays.sort(arr);
 
-		// ����ַ�
+
 		StringBuffer content = new StringBuffer();
 		for (int i = 0; i < arr.length; i++) {
 			content.append(arr[i]);
@@ -24,7 +24,7 @@ public class CheckUtil {
 
 	}
 
-	//sha1�����㷨
+	//sha1
 	public static String getSha1(String str) {
 		if (null == str || 0 == str.length()) {
 			return null;
