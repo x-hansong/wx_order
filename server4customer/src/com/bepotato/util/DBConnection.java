@@ -11,7 +11,7 @@ public class DBConnection {
 		driver="com.mysql.jdbc.Driver";
 		url="jdbc:mysql://localhost:3306/wx_db?useUnicode=true&characterEncoding=utf8";
 		dbusername="root";
-		dbpassword="";
+		dbpassword="root";
 		this.getConection();
 	}
 	
@@ -24,7 +24,7 @@ public class DBConnection {
 	private ResultSet rs;
 	
 	/*
-	 * µÃµ½Connection¶ÔÏó¡£
+	 * ï¿½Ãµï¿½Connectionï¿½ï¿½ï¿½ï¿½
 	 */
 	public Connection getConection(){
 		try {
@@ -40,7 +40,7 @@ public class DBConnection {
 	}
 	
 	/*
-	 * µÃµ½Statement¶ÔÏó
+	 * ï¿½Ãµï¿½Statementï¿½ï¿½ï¿½ï¿½
 	 */
 	public Statement getStatement(){
 		try {
